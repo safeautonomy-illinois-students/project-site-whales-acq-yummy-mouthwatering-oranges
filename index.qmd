@@ -1,5 +1,5 @@
 ---
-pagetitle: "Your Project Title"
+pagetitle: "Hello World"
 format:
   html:
     toc: false
