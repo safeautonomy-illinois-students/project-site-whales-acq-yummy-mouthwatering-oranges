@@ -17,7 +17,7 @@ A catchy one-line description of your project
 ::: {.author-list}
 
 [**Author One**](https://example.com)^1^,
-[**Author Two**](https://example.com)^2^,
+[**Avyay Koorapaty**](https://example.com)^2^,
 [**Author Three**](https://example.com)^1,2^
 
 :::
