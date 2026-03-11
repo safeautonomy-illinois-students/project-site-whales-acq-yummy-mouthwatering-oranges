@@ -1,5 +1,5 @@
 ---
-pagetitle: "Hello World"
+pagetitle: "Autonomous Crazyflie Racing"
 format:
   html:
     toc: false
@@ -24,11 +24,11 @@ A catchy one-line description of your project
 
 ::: {.affiliation-list}
 
-^1^University Name,  ^2^Research Lab / Company
+^1^University of Illinois Urbana-Champaign,  ^2^Research Lab / Company
 
 :::
 
-::: {.button-row}
+<!-- ::: {.button-row}
 
 [[{{< fa file-pdf >}} Paper]{.btn-text}](https://arxiv.org/pdf/XXXX.XXXXX){.btn .btn-primary}
 [[{{< fa brands arxiv >}} arXiv]{.btn-text}](https://arxiv.org/abs/XXXX.XXXXX){.btn .btn-primary}
@@ -36,36 +36,59 @@ A catchy one-line description of your project
 [[{{< fa brands github >}} Code]{.btn-text}](https://github.com/){.btn .btn-primary}
 [[{{< fa database >}} Data]{.btn-text}](https://example.com){.btn .btn-primary}
 
-:::
+::: -->
 
 :::
 
+
+<!-- ============================================================ -->
+<!-- OVERVIEW / METHOD VIDEO -->
+<!-- ============================================================ -->
+
+::: {.section-container}
+
+## CrazySim Demo Video {.section-title}
+
+::: {.video-container}
+<!-- Replace with your YouTube or local video embed -->
+<iframe 
+  data-external="1"
+  src="https://drive.google.com/file/d/19gJNhy83WSmalq7L3kvWXCReEqtnhzXn/preview"
+  width="640"
+  height="480" >
+</iframe>
+
+:::
+
+:::
+
+
+<!-- ===Everything below here is from the template=== -->
 
 <!-- ============================================================ -->
 <!-- TEASER IMAGE / VIDEO -->
 <!-- ============================================================ -->
 
-::: {.section-container}
+<!-- ::: {.section-container} -->
 
-::: {.hero-teaser}
+<!-- ::: {.hero-teaser} -->
 
 <!-- Option A: Use a static image as the teaser -->
-![Teaser figure showing your method overview or key result.](static/images/placeholder-teaser.svg){.teaser-img}
+<!-- ![Teaser figure showing your method overview or key result.](static/images/placeholder-teaser.svg){.teaser-img} -->
 
 <!-- Option B: Embed a video teaser (uncomment below, comment out image above)
 {{< video static/videos/teaser.mp4 >}}
 -->
 
-:::
+<!-- ::: -->
 
-:::
-
+<!-- ::: -->
 
 <!-- ============================================================ -->
 <!-- ABSTRACT -->
 <!-- ============================================================ -->
 
-::: {.section-container}
+<!-- ::: {.section-container}
 
 ## Abstract {.section-title}
 
@@ -82,36 +105,14 @@ approach outperforms existing methods by [metric improvement] while requiring
 [efficiency gain].
 :::
 
-:::
-
-
-<!-- ============================================================ -->
-<!-- OVERVIEW / METHOD VIDEO -->
-<!-- ============================================================ -->
-
-::: {.section-container}
-
-## Video {.section-title}
-
-::: {.video-container}
-<!-- Replace with your YouTube or local video embed -->
-<iframe 
-  data-external="1"
-  src="https://drive.google.com/file/d/19gJNhy83WSmalq7L3kvWXCReEqtnhzXn/preview"
-  width="640"
-  height="480" >
-</iframe>
-<!-- {{< video https://drive.google.com/file/d/19gJNhy83WSmalq7L3kvWXCReEqtnhzXn/preview >}} -->
-:::
-
-:::
+::: -->
 
 
 <!-- ============================================================ -->
 <!-- RESULTS GALLERY -->
 <!-- ============================================================ -->
 
-::: {.section-container}
+<!-- ::: {.section-container}
 
 ## Results {.section-title}
 
@@ -136,14 +137,14 @@ reader should observe and why it matters.
 
 :::
 
-:::
+::: -->
 
 
 <!-- ============================================================ -->
 <!-- QUALITATIVE COMPARISONS -->
 <!-- ============================================================ -->
 
-::: {.section-container}
+<!-- ::: {.section-container}
 
 ## Qualitative Comparisons {.section-title}
 
@@ -168,14 +169,14 @@ what should the reader look for in the side-by-side results.
 
 :::
 
-:::
+::: -->
 
 
 <!-- ============================================================ -->
 <!-- INTERACTIVE SLIDER (Optional) -->
 <!-- ============================================================ -->
 
-::: {.section-container}
+<!-- ::: {.section-container}
 
 ## Interpolation Demo {.section-title}
 
@@ -205,14 +206,14 @@ interactive slider here. The example below shows how to set one up.
 
 :::
 
-:::
+::: -->
 
 
 <!-- ============================================================ -->
 <!-- RELATED WORK -->
 <!-- ============================================================ -->
 
-::: {.section-container}
+<!-- ::: {.section-container}
 
 ## Related Work {.section-title}
 
@@ -227,14 +228,14 @@ Here are some related works in this area:
 Check out [this survey](https://example.com) for a comprehensive overview of the field.
 :::
 
-:::
+::: -->
 
 
 <!-- ============================================================ -->
 <!-- BIBTEX -->
 <!-- ============================================================ -->
 
-::: {.section-container}
+<!-- ::: {.section-container}
 
 ## BibTeX {.section-title}
 
@@ -247,7 +248,7 @@ Check out [this survey](https://example.com) for a comprehensive overview of the
 }
 ```
 
-:::
+::: -->
 
 
 <!-- ============================================================ -->
