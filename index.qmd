@@ -8,7 +8,7 @@ format:
 
 ::: {.hero-section}
 
-# Whale Orange Yum {.title}
+# Autonomous Crazyflie Racing {.title}
 
 ::: {.subtitle}
 A catchy one-line description of your project
@@ -16,9 +16,9 @@ A catchy one-line description of your project
 
 ::: {.author-list}
 
-[**Author One**](https://example.com)^1^,
+[**Jesse Wei**](https://example.com)^1^,
 [**Avyay Koorapaty**](https://example.com)^2^,
-[**Author Three**](https://example.com)^1,2^
+[**Neel Rajesh**](https://example.com)^1,2^
 
 :::
 
@@ -95,7 +95,13 @@ approach outperforms existing methods by [metric improvement] while requiring
 
 ::: {.video-container}
 <!-- Replace with your YouTube or local video embed -->
-{{< video https://www.youtube.com/embed/cSQTZoZPJzs >}}
+<iframe 
+  data-external="1"
+  src="https://drive.google.com/file/d/19gJNhy83WSmalq7L3kvWXCReEqtnhzXn/preview"
+  width="640"
+  height="480" >
+</iframe>
+<!-- {{< video https://drive.google.com/file/d/19gJNhy83WSmalq7L3kvWXCReEqtnhzXn/preview >}} -->
 :::
 
 :::
