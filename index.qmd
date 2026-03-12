@@ -28,7 +28,7 @@ A catchy one-line description of your project
 
 :::
 
-<!-- ::: {.button-row}
+::: {.button-row}
 
 [[{{< fa file-pdf >}} Paper]{.btn-text}](https://arxiv.org/pdf/XXXX.XXXXX){.btn .btn-primary}
 [[{{< fa brands arxiv >}} arXiv]{.btn-text}](https://arxiv.org/abs/XXXX.XXXXX){.btn .btn-primary}
@@ -36,14 +36,7 @@ A catchy one-line description of your project
 [[{{< fa brands github >}} Code]{.btn-text}](https://github.com/){.btn .btn-primary}
 [[{{< fa database >}} Data]{.btn-text}](https://example.com){.btn .btn-primary}
 
-::: -->
-
 :::
-
-::: {.section-container}
-
-## Stability at Hover {.section-title}
-<!-- ![](static/images/State-Estimation-Framework.png) -->
 
 :::
 
@@ -54,12 +47,6 @@ A catchy one-line description of your project
 
 :::
 
-::: {.section-container}
-
-## Waypoint Tracking {.section-title}
-<!-- ![](static/images/State-Estimation-Framework.png) -->
-
-:::
 
 <!-- ============================================================ -->
 <!-- OVERVIEW / METHOD VIDEO -->
@@ -89,26 +76,26 @@ A catchy one-line description of your project
 <!-- TEASER IMAGE / VIDEO -->
 <!-- ============================================================ -->
 
-<!-- ::: {.section-container} -->
+::: {.section-container}
 
-<!-- ::: {.hero-teaser} -->
+::: {.hero-teaser}
 
 <!-- Option A: Use a static image as the teaser -->
-<!-- ![Teaser figure showing your method overview or key result.](static/images/placeholder-teaser.svg){.teaser-img} -->
+![Teaser figure showing your method overview or key result.](static/images/placeholder-teaser.svg){.teaser-img}
 
 <!-- Option B: Embed a video teaser (uncomment below, comment out image above)
 {{< video static/videos/teaser.mp4 >}}
 -->
 
-<!-- ::: -->
+:::
 
-<!-- ::: -->
+:::
 
 <!-- ============================================================ -->
 <!-- ABSTRACT -->
 <!-- ============================================================ -->
 
-<!-- ::: {.section-container}
+::: {.section-container}
 
 ## Abstract {.section-title}
 
@@ -125,14 +112,14 @@ approach outperforms existing methods by [metric improvement] while requiring
 [efficiency gain].
 :::
 
-::: -->
+:::
 
 
 <!-- ============================================================ -->
 <!-- RESULTS GALLERY -->
 <!-- ============================================================ -->
 
-<!-- ::: {.section-container}
+::: {.section-container}
 
 ## Results {.section-title}
 
@@ -157,7 +144,7 @@ reader should observe and why it matters.
 
 :::
 
-::: -->
+:::
 
 
 <!-- ============================================================ -->
@@ -255,7 +242,7 @@ Check out [this survey](https://example.com) for a comprehensive overview of the
 <!-- BIBTEX -->
 <!-- ============================================================ -->
 
-<!-- ::: {.section-container}
+::: {.section-container}
 
 ## BibTeX {.section-title}
 
@@ -268,7 +255,7 @@ Check out [this survey](https://example.com) for a comprehensive overview of the
 }
 ```
 
-::: -->
+:::
 
 
 <!-- ============================================================ -->
