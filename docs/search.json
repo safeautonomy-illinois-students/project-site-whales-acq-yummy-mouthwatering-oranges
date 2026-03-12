@@ -2,36 +2,50 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Autonomous Crazyflie Racing",
+    "title": "Trajectory Planning and Velocity Optimization for Crazyflie 2.1 Quadrotor",
     "section": "",
-    "text": "A catchy one-line description of your project\n\n\nJesse Wei1, Avyay Koorapaty2, Neel Rajesh1,2\n\n\n1University of Illinois Urbana-Champaign, 2Research Lab / Company"
+    "text": "Seeking safe, efficient, and fast drone navigation through an obstacle course.\n\n\nJesse Wei1, Avyay Koorapaty1, Neel Rajesh1,\n\n\n1University of Illinois Urbana-Champaign, Department of Electrical and Computer Engineering\n\n\n\n\n Video  Code"
   },
   {
-    "objectID": "index.html#stability-at-hover",
-    "href": "index.html#stability-at-hover",
-    "title": "Autonomous Crazyflie Racing",
-    "section": "Stability at Hover",
-    "text": "Stability at Hover"
+    "objectID": "index.html#abstract",
+    "href": "index.html#abstract",
+    "title": "Trajectory Planning and Velocity Optimization for Crazyflie 2.1 Quadrotor",
+    "section": "Abstract",
+    "text": "Abstract\n\nWe are building and testing various trajectory planning algorithms for a Crazyflie quadrotor that attempt to map the fastest path through an obstacle course. Through a state estimation framework utilizing measurements collected by sensors, the pose of the Crazyflie can be estimated. This trajectory and the estimated pose can be fed into a position and velocity controller that minimizes the amount of time it takes the quadrotor to complete the obstacle course. We are considering implementing different trajectory planning algorithms: linear fitting, polynomial fitting, and/or gradient descent with waypoints. We will consider implementing the speed controller using the Euclidean distance to the next obstacle and/or the curve of the trajectory, as well as incorporating sensor data. These algorithms will be developed and tested in simulation before deploying to the hardware."
   },
   {
     "objectID": "index.html#state-estimation-framework",
     "href": "index.html#state-estimation-framework",
-    "title": "Autonomous Crazyflie Racing",
+    "title": "Trajectory Planning and Velocity Optimization for Crazyflie 2.1 Quadrotor",
     "section": "State Estimation Framework",
     "text": "State Estimation Framework"
   },
   {
-    "objectID": "index.html#waypoint-tracking",
-    "href": "index.html#waypoint-tracking",
-    "title": "Autonomous Crazyflie Racing",
-    "section": "Waypoint Tracking",
-    "text": "Waypoint Tracking"
+    "objectID": "index.html#trajectory-planning",
+    "href": "index.html#trajectory-planning",
+    "title": "Trajectory Planning and Velocity Optimization for Crazyflie 2.1 Quadrotor",
+    "section": "Trajectory Planning",
+    "text": "Trajectory Planning"
   },
   {
     "objectID": "index.html#crazysim-demo-video",
     "href": "index.html#crazysim-demo-video",
-    "title": "Autonomous Crazyflie Racing",
+    "title": "Trajectory Planning and Velocity Optimization for Crazyflie 2.1 Quadrotor",
     "section": "CrazySim Demo Video",
-    "text": "CrazySim Demo Video"
+    "text": "CrazySim Demo Video\n\nWe have setup the simulator for Crazyflie with a video below showing a drone flying through square rings."
+  },
+  {
+    "objectID": "index.html#plan-for-work-allocation",
+    "href": "index.html#plan-for-work-allocation",
+    "title": "Trajectory Planning and Velocity Optimization for Crazyflie 2.1 Quadrotor",
+    "section": "Plan for Work Allocation",
+    "text": "Plan for Work Allocation\n\nOne person will work developing the state estimator, another will work on the position and velocity controller, and another will work on developing and implementing the various trajectory planning algorithms."
+  },
+  {
+    "objectID": "index.html#bibtex",
+    "href": "index.html#bibtex",
+    "title": "Trajectory Planning and Velocity Optimization for Crazyflie 2.1 Quadrotor",
+    "section": "BibTeX",
+    "text": "BibTeX\n@article{WhalesAcquringYummyMouthwateringOranges2026Project,\n  author    = {Avyay Koorapaty and Jesse Wei and Neel Rajesh},\n  title     = {Trajectory Planning and Optimization for Crazyflie 2.1 Quadrotor},\n  journal   = {ECE 484},\n  year      = {2026},\n}"
   }
 ]

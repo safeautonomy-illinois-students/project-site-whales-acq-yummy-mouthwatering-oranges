@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Autonomous Crazyflie Racing – Project Title</title>
+<title>Whales Acquiring Yummy Mouthwatering Oranges – Project Title</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -129,48 +164,58 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="autonomous-crazyflie-racing" class="level1 title hero-section">
-<h1 class="title">Autonomous Crazyflie Racing</h1>
+<section id="trajectory-planning-and-velocity-optimization-for-crazyflie-2.1-quadrotor" class="level1 title hero-section">
+<h1 class="title">Trajectory Planning and Velocity Optimization for Crazyflie 2.1 Quadrotor</h1>
 <div class="subtitle">
-<p>A catchy one-line description of your project</p>
+<p>Seeking safe, efficient, and fast drone navigation through an obstacle course.</p>
 </div>
 <div class="author-list">
-<p><a href="https://example.com"><strong>Jesse Wei</strong></a><sup>1</sup>, <a href="https://example.com"><strong>Avyay Koorapaty</strong></a><sup>2</sup>, <a href="https://example.com"><strong>Neel Rajesh</strong></a><sup>1,2</sup></p>
+<p><a href="https://example.com"><strong>Jesse Wei</strong></a><sup>1</sup>, <a href="https://example.com"><strong>Avyay Koorapaty</strong></a><sup>1</sup>, <a href="https://example.com"><strong>Neel Rajesh</strong></a><sup>1,</sup></p>
 </div>
 <div class="affiliation-list">
-<p><sup>1</sup>University of Illinois Urbana-Champaign, <sup>2</sup>Research Lab / Company</p>
+<p><sup>1</sup>University of Illinois Urbana-Champaign, Department of Electrical and Computer Engineering</p>
 </div>
-<!-- ::: {.button-row}
-
-[[ Paper]{.btn-text}](https://arxiv.org/pdf/XXXX.XXXXX){.btn .btn-primary}
-[[ arXiv]{.btn-text}](https://arxiv.org/abs/XXXX.XXXXX){.btn .btn-primary}
-[[ Video]{.btn-text}](https://www.youtube.com/watch?v=cSQTZoZPJzs){.btn .btn-primary}
-[[ Code]{.btn-text}](https://github.com/){.btn .btn-primary}
-[[ Data]{.btn-text}](https://example.com){.btn .btn-primary}
-
-::: -->
+<div class="button-row">
+<!-- [[ Paper]{.btn-text}](https://arxiv.org/pdf/XXXX.XXXXX){.btn .btn-primary} -->
+<!-- [[ arXiv]{.btn-text}](https://arxiv.org/abs/XXXX.XXXXX){.btn .btn-primary} -->
+<p><a href="https://www.youtube.com/watch?v=cSQTZoZPJzs" class="btn btn-primary"><span class="btn-text"><i class="fa-solid fa-video" aria-label="video"></i> Video</span></a> <a href="https://github.com/" class="btn btn-primary"><span class="btn-text"><i class="fa-brands fa-github" aria-label="github"></i> Code</span></a> <!-- [[ Data]{.btn-text}](https://example.com){.btn .btn-primary} --></p>
+</div>
 </section>
-<section id="stability-at-hover" class="level2 section-title section-container">
-<h2 class="section-title anchored" data-anchor-id="stability-at-hover">Stability at Hover</h2>
-<!-- ![](static/images/State-Estimation-Framework.png) -->
+<!-- ============================================================ -->
+<!-- ABSTRACT -->
+<!-- ============================================================ -->
+<section id="abstract" class="level2 section-title section-container">
+<h2 class="section-title anchored" data-anchor-id="abstract">Abstract</h2>
+<div class="abstract-text">
+<p>We are building and testing various trajectory planning algorithms for a Crazyflie quadrotor that attempt to map the fastest path through an obstacle course. Through a state estimation framework utilizing measurements collected by sensors, the pose of the Crazyflie can be estimated. This trajectory and the estimated pose can be fed into a position and velocity controller that minimizes the amount of time it takes the quadrotor to complete the obstacle course. We are considering implementing different trajectory planning algorithms: linear fitting, polynomial fitting, and/or gradient descent with waypoints. We will consider implementing the speed controller using the Euclidean distance to the next obstacle and/or the curve of the trajectory, as well as incorporating sensor data. These algorithms will be developed and tested in simulation before deploying to the hardware.</p>
+</div>
 </section>
 <section id="state-estimation-framework" class="level2 section-title section-container">
 <h2 class="section-title anchored" data-anchor-id="state-estimation-framework">State Estimation Framework</h2>
 <p><img src="static/images/State-Estimation-Framework.png" class="img-fluid"></p>
 </section>
-<section id="waypoint-tracking" class="level2 section-title section-container">
-<h2 class="section-title anchored" data-anchor-id="waypoint-tracking">Waypoint Tracking</h2>
-<!-- ![](static/images/State-Estimation-Framework.png) -->
+<section id="trajectory-planning" class="level2 section-title section-container">
+<h2 class="section-title anchored" data-anchor-id="trajectory-planning">Trajectory Planning</h2>
+<p><img src="static/images/Waypoint-Following.png" class="img-fluid"></p>
 </section>
 <!-- ============================================================ -->
 <!-- OVERVIEW / METHOD VIDEO -->
 <!-- ============================================================ -->
 <section id="crazysim-demo-video" class="level2 section-title section-container">
 <h2 class="section-title anchored" data-anchor-id="crazysim-demo-video">CrazySim Demo Video</h2>
+<div class="content-text">
+<p>We have setup the simulator for Crazyflie with a video below showing a drone flying through square rings.</p>
+</div>
 <div class="video-container">
 <!-- Replace with your YouTube or local video embed -->
 <iframe data-external="1" src="https://drive.google.com/file/d/19gJNhy83WSmalq7L3kvWXCReEqtnhzXn/preview" width="640" height="480">
 </iframe>
+</div>
+</section>
+<section id="plan-for-work-allocation" class="level2 section-title section-container">
+<h2 class="section-title anchored" data-anchor-id="plan-for-work-allocation">Plan for Work Allocation</h2>
+<div class="content-text">
+<p>One person will work developing the state estimator, another will work on the position and velocity controller, and another will work on developing and implementing the various trajectory planning algorithms.</p>
 </div>
 </section>
 <!-- ===Everything below here is from the template=== -->
@@ -187,53 +232,38 @@ ul.task-list li input[type="checkbox"] {
 <!-- ::: -->
 <!-- ::: -->
 <!-- ============================================================ -->
-<!-- ABSTRACT -->
-<!-- ============================================================ -->
-<!-- ::: {.section-container}
-
-## Abstract {.section-title}
-
-::: {.abstract-text}
-Replace this text with your project abstract. Describe the problem you are
-solving, the key insight or contribution of your work, and the main results.
-Keep it concise — typically 150–250 words. You can use **bold** and *italic*
-formatting to emphasize key terms.
-
-For example: We present a novel approach to [task] that achieves
-state-of-the-art results on [benchmark]. Our method leverages [key technique]
-to overcome [limitation of prior work]. Experiments demonstrate that our
-approach outperforms existing methods by [metric improvement] while requiring
-[efficiency gain].
-:::
-
-::: -->
-<!-- ============================================================ -->
 <!-- RESULTS GALLERY -->
 <!-- ============================================================ -->
 <!-- ::: {.section-container}
 
+
 ## Results {.section-title}
 
-::: {.content-text}
-Provide a brief description of the results shown below. Explain what the
-reader should observe and why it matters.
-:::
+
+
+
+
 
 ::: {.results-grid}
+
 
 ::: {.result-card}
 ![Result 1 caption](static/images/placeholder-result1.svg)
 :::
 
+
 ::: {.result-card}
 ![Result 2 caption](static/images/placeholder-result2.svg)
 :::
+
 
 ::: {.result-card}
 ![Result 3 caption](static/images/placeholder-result3.svg)
 :::
 
+
 :::
+
 
 ::: -->
 <!-- ============================================================ -->
@@ -241,28 +271,37 @@ reader should observe and why it matters.
 <!-- ============================================================ -->
 <!-- ::: {.section-container}
 
+
 ## Qualitative Comparisons {.section-title}
+
 
 ::: {.content-text}
 Describe the comparison setup — which baselines are you comparing against, and
 what should the reader look for in the side-by-side results.
 :::
 
+
 ::: {.comparison-grid}
+
 
 ::: {.comparison-item}
 ![Ours](static/images/placeholder-ours.svg)
 
+
 **Ours**
 :::
+
 
 ::: {.comparison-item}
 ![Baseline A](static/images/placeholder-baseline.svg)
 
+
 **Baseline A**
 :::
 
+
 :::
+
 
 ::: -->
 <!-- ============================================================ -->
@@ -270,23 +309,30 @@ what should the reader look for in the side-by-side results.
 <!-- ============================================================ -->
 <!-- ::: {.section-container}
 
+
 ## Interpolation Demo {.section-title}
+
 
 ::: {.content-text}
 If your method supports interpolation or continuous control, you can add an
 interactive slider here. The example below shows how to set one up.
 :::
 
+
 ::: {.interpolation-panel}
+
 
 ::: {.interpolation-endpoints}
 ![Start](static/images/placeholder-start.svg){.endpoint-img}
 
+
 ![End](static/images/placeholder-end.svg){.endpoint-img}
 :::
 
+
 <input type="range" min="0" max="100" value="50" class="interpolation-slider" id="interpolation-slider">
 <div id="interpolation-value" class="interpolation-value">50%</div>
+
 
 <script>
   const slider = document.getElementById('interpolation-slider');
@@ -296,7 +342,9 @@ interactive slider here. The example below shows how to set one up.
   });
 </script>
 
+
 :::
+
 
 ::: -->
 <!-- ============================================================ -->
@@ -304,37 +352,38 @@ interactive slider here. The example below shows how to set one up.
 <!-- ============================================================ -->
 <!-- ::: {.section-container}
 
+
 ## Related Work {.section-title}
+
 
 ::: {.content-text}
 
+
 Here are some related works in this area:
+
 
 - [Related Paper 1](https://example.com) introduces an idea similar to ours for [topic].
 - [Related Paper 2](https://example.com) also addresses [problem] using [approach].
 - [Related Paper 3](https://example.com) proposes [technique] which is complementary to our method.
 
+
 Check out [this survey](https://example.com) for a comprehensive overview of the field.
 :::
+
 
 ::: -->
 <!-- ============================================================ -->
 <!-- BIBTEX -->
 <!-- ============================================================ -->
-<!-- ::: {.section-container}
-
-## BibTeX {.section-title}
-
-```bibtex
-@article{yourname2026project,
-  author    = {Author One and Author Two and Author Three},
-  title     = {Your Project Title Here},
-  journal   = {Conference or Journal Name},
-  year      = {2026},
-}
-```
-
-::: -->
+<section id="bibtex" class="level2 section-title section-container">
+<h2 class="section-title anchored" data-anchor-id="bibtex">BibTeX</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">WhalesAcquringYummyMouthwateringOranges2026Project</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>    = {Avyay Koorapaty and Jesse Wei and Neel Rajesh},</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>     = {Trajectory Planning and Optimization for Crazyflie 2.1 Quadrotor},</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span>   = {ECE 484},</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>      = {2026},</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
 <!-- ============================================================ -->
 <!-- FOOTER -->
 <!-- ============================================================ -->
