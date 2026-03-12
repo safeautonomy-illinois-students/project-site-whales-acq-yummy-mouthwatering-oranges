@@ -40,6 +40,26 @@ A catchy one-line description of your project
 
 :::
 
+::: {.section-container}
+
+## Stability at Hover {.section-title}
+<!-- ![](static/images/State-Estimation-Framework.png) -->
+
+:::
+
+::: {.section-container}
+
+## State Estimation Framework {.section-title}
+![](static/images/State-Estimation-Framework.png)
+
+:::
+
+::: {.section-container}
+
+## Waypoint Tracking {.section-title}
+<!-- ![](static/images/State-Estimation-Framework.png) -->
+
+:::
 
 <!-- ============================================================ -->
 <!-- OVERVIEW / METHOD VIDEO -->
