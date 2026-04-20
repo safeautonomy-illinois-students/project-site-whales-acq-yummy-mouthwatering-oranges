@@ -11,7 +11,7 @@
     "href": "index.html#abstract",
     "title": "Trajectory Planning and Velocity Optimization for Crazyflie 2.1 Quadrotor",
     "section": "Abstract",
-    "text": "Abstract\n\nWe are building and testing various trajectory planning algorithms for a Crazyflie quadrotor that attempt to map the fastest path through an obstacle course. Through a state estimation framework utilizing measurements collected by sensors, the pose of the Crazyflie can be estimated. This trajectory and the estimated pose can be fed into a position and velocity controller that minimizes the amount of time it takes the quadrotor to complete the obstacle course. We are considering implementing different trajectory planning algorithms: linear fitting, polynomial fitting, and/or gradient descent with waypoints. We will consider implementing the speed controller using the Euclidean distance to the next obstacle and/or the curve of the trajectory, as well as incorporating sensor data. These algorithms will be developed and tested in simulation before deploying to the hardware."
+    "text": "Abstract\n\nWe are building and testing various trajectory planning algorithms for a Crazyflie quadrotor that attempt to map the fastest path through an obstacle course. Through a state estimation framework utilizing measurements collected by sensors, the pose of the Crazyflie can be estimated. This trajectory and the estimated pose can be fed into a position and velocity controller that minimizes the amount of time it takes the quadrotor to complete the obstacle course. We are considering implementing different trajectory planning algorithms: linear fitting, polynomial fitting, and/or gradient descent with waypoints. We will consider implementing the speed controller using the Euclidean distance to the next obstacle and/or the curve of the trajectory, as well as incorporating sensor data. These algorithms will be developed and tested in simulation before being deployed to the hardware."
   },
   {
     "objectID": "index.html#state-estimation-framework",
@@ -26,6 +26,13 @@
     "title": "Trajectory Planning and Velocity Optimization for Crazyflie 2.1 Quadrotor",
     "section": "Trajectory Planning",
     "text": "Trajectory Planning"
+  },
+  {
+    "objectID": "index.html#architecture-and-flow",
+    "href": "index.html#architecture-and-flow",
+    "title": "Trajectory Planning and Velocity Optimization for Crazyflie 2.1 Quadrotor",
+    "section": "Architecture and Flow",
+    "text": "Architecture and Flow"
   },
   {
     "objectID": "index.html#crazysim-demo-video",

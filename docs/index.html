@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.31">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -74,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7c69b197886ae2a34062761d21e44731.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c7ab57aa33037bad7520c6cb9ec7d6ec.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-26d9cc88ab9604001aabd73cb1ea1d8f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
 <script src="site_libs/quarto-contrib/videojs/video.min.js"></script>
@@ -187,7 +187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="abstract" class="level2 section-title section-container">
 <h2 class="section-title anchored" data-anchor-id="abstract">Abstract</h2>
 <div class="abstract-text">
-<p>We are building and testing various trajectory planning algorithms for a Crazyflie quadrotor that attempt to map the fastest path through an obstacle course. Through a state estimation framework utilizing measurements collected by sensors, the pose of the Crazyflie can be estimated. This trajectory and the estimated pose can be fed into a position and velocity controller that minimizes the amount of time it takes the quadrotor to complete the obstacle course. We are considering implementing different trajectory planning algorithms: linear fitting, polynomial fitting, and/or gradient descent with waypoints. We will consider implementing the speed controller using the Euclidean distance to the next obstacle and/or the curve of the trajectory, as well as incorporating sensor data. These algorithms will be developed and tested in simulation before deploying to the hardware.</p>
+<p>We are building and testing various trajectory planning algorithms for a Crazyflie quadrotor that attempt to map the fastest path through an obstacle course. Through a state estimation framework utilizing measurements collected by sensors, the pose of the Crazyflie can be estimated. This trajectory and the estimated pose can be fed into a position and velocity controller that minimizes the amount of time it takes the quadrotor to complete the obstacle course. We are considering implementing different trajectory planning algorithms: linear fitting, polynomial fitting, and/or gradient descent with waypoints. We will consider implementing the speed controller using the Euclidean distance to the next obstacle and/or the curve of the trajectory, as well as incorporating sensor data. These algorithms will be developed and tested in simulation before being deployed to the hardware.</p>
 </div>
 </section>
 <section id="state-estimation-framework" class="level2 section-title section-container">
@@ -197,6 +197,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="trajectory-planning" class="level2 section-title section-container">
 <h2 class="section-title anchored" data-anchor-id="trajectory-planning">Trajectory Planning</h2>
 <p><img src="static/images/Waypoint-Following.png" class="img-fluid"></p>
+</section>
+<section id="architecture-and-flow" class="level2 section-title section-container">
+<h2 class="section-title anchored" data-anchor-id="architecture-and-flow">Architecture and Flow</h2>
+<p><img src="static/images/Architecture_and_Flow.png" class="img-fluid"></p>
 </section>
 <!-- ============================================================ -->
 <!-- OVERVIEW / METHOD VIDEO -->

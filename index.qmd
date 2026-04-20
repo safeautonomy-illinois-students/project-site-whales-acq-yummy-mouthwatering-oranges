@@ -93,7 +93,14 @@ We are building and testing various trajectory planning algorithms for a Crazyfl
 :::
 
 
+::: {.section-container}
 
+
+## Architecture and Flow {.section-title}
+![](static/images/Architecture_and_Flow.png)
+
+
+:::
 
 <!-- ============================================================ -->
 <!-- OVERVIEW / METHOD VIDEO -->
