@@ -286,7 +286,38 @@ window.Quarto = {
 <section id="pid-controller" class="level3">
 <h3 class="anchored">PID Controller</h3>
 <div class="content-text">
-<p>The PID controller outputs an attitude command that is fed to the inner-loop flight controller. Based off of the error between the quadrotor’s current position and the desired trajectory, an acceleration that minimizes this error is computed and converted into the desired attitude command. An error for each direction is computed as <span class="math inline">\(e = (e_x, e_y, e_z) = (x_{desired} - x_{current}, y_{desired} - y_{current}, z_{desired} - z_{current})\)</span>. The acceleration inputs are computed as follows based off <span class="math display">\[u_x = -K_{Px}*e - K_{Dx}*\frac{de}{dt} + K_{Ix}*\int_0^t e dt\]</span> <span class="math display">\[u_y = -K_{Py}*e - K_{Dy}*\frac{de}{dt} + K_{Iy}*\int_0^t e dt\]</span> <span class="math display">\[u_z = K_{Pz}*e + K_{Dz}*\frac{de}{dt} + K_{Iz}*\int_0^t e dt\]</span> with the corresponding PID gains for each direction. The gains are as follows: | K_{Px} = 18 | K_{Dx} = 7 | K_{Ix} = 0.2 | | K_{Py} = 18 | K_{Dy} = 7 | K_{Iy} = 0.2 | | K_{Pz} = 10 | K_{Dz} = 1.5 | K_{Iz} = 1 | The desired roll and pitch angles and thrust are computed as: <span class="math display">\[\phi_d = \tan^{-1}(\frac{u_y\cos(\theta)}{g - u_z})\]</span> <span class="math display">\[\theta_d = \tan^{-1}(\frac{u_x}{u_z - g})\]</span> <span class="math display">\[thrust = m*(u_z + g)\]</span></p>
+<p>The PID controller outputs an attitude command that is fed to the inner-loop flight controller. Based off of the error between the quadrotor’s current position and the desired trajectory, an acceleration that minimizes this error is computed and converted into the desired attitude command. An error for each direction is computed as <span class="math inline">\(e = (e_x, e_y, e_z) = (x_{desired} - x_{current}, y_{desired} - y_{current}, z_{desired} - z_{current})\)</span>. The acceleration inputs are computed as follows based off <span class="math display">\[u_x = -K_{Px}*e - K_{Dx}*\frac{de}{dt} + K_{Ix}*\int_0^t e dt\]</span> <span class="math display">\[u_y = -K_{Py}*e - K_{Dy}*\frac{de}{dt} + K_{Iy}*\int_0^t e dt\]</span> <span class="math display">\[u_z = K_{Pz}*e + K_{Dz}*\frac{de}{dt} + K_{Iz}*\int_0^t e dt\]</span> with the corresponding PID gains for each direction. The gains are as follows:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Axis</th>
+<th>Kp</th>
+<th>Kd</th>
+<th>Ki</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>X</td>
+<td>18</td>
+<td>7</td>
+<td>0.2</td>
+</tr>
+<tr class="even">
+<td>Y</td>
+<td>18</td>
+<td>7</td>
+<td>0.2</td>
+</tr>
+<tr class="odd">
+<td>Z</td>
+<td>10</td>
+<td>1.5</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>The desired roll and pitch angles and thrust are computed as: <span class="math display">\[\phi_d = \tan^{-1}(\frac{u_y\cos(\theta)}{g - u_z})\]</span> <span class="math display">\[\theta_d = \tan^{-1}(\frac{u_x}{u_z - g})\]</span> <span class="math display">\[thrust = m*(u_z + g)\]</span> <span class="citation" data-cites="mathworks_quadrotor_ilc"><a href="#ref-mathworks_quadrotor_ilc" role="doc-biblioref">[2]</a></span></p>
 </div>
 <div class="section-container">
 <!-- ============================================================ -->
@@ -613,6 +644,9 @@ Check out [this survey](https://example.com) for a comprehensive overview of the
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
 <div id="ref-scipy_smoothing_spline" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[1] </div><div class="csl-right-inline">SciPy Developers, <span>“Scipy.interpolate.make_smoothing_spline.”</span> <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.make_smoothing_spline.html" class="uri">https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.make_smoothing_spline.html</a>.</div>
+</div>
+<div id="ref-mathworks_quadrotor_ilc" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">MathWorks, <span>“Quadrotor trajectory tracking using iterative learning control.”</span> <a href="https://www.mathworks.com/help/slcontrol/ug/quadrotor-trajectory-tracking-using-ilc.html" class="uri">https://www.mathworks.com/help/slcontrol/ug/quadrotor-trajectory-tracking-using-ilc.html</a>.</div>
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

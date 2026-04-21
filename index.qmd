@@ -165,7 +165,7 @@ The desired roll and pitch angles and thrust are computed as:
 $$\phi_d = \tan^{-1}(\frac{u_y\cos(\theta)}{g - u_z})$$
 $$\theta_d = \tan^{-1}(\frac{u_x}{u_z - g})$$
 $$thrust = m*(u_z + g)$$
-
+[@mathworks_quadrotor_ilc]
 :::
 
 ::: {.section-container}
