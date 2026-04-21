@@ -118,7 +118,7 @@ Position, velocity, and acceleration
 
 ### PID Controller
 ::: {.content-text}
-The PID controller provides 
+The PID controller [@mathworks_quadrotor_ilc] provides 
 :::
 
 ::: {.section-container}
@@ -172,16 +172,20 @@ PID Controller's RMSE:
 
 ::: {.section-container}
 
-## Simulation of Position-Velocity-Accleration Controller
+
+## Crazyflie Simluation and Hardware Videos {.section-title}
+
+### Simulation of Position-Velocity-Accleration Controller
 ::: {.content-text}
 
 :::
-## Simulation of PID Controller
+
+### Simulation of PID Controller
 ::: {.content-text}
 
 :::
-## Crazyflie Hardware Hovering Video {.section-title}
 
+### Crazyflie Hardware Hover Demo
 ::: {.content-text}
 We have performed the hardware setup to run our controllers on the Crazyflie drone. Below is a video of the drone hovering at a constant 0.4 meters off the ground.
 :::
@@ -189,8 +193,6 @@ We have performed the hardware setup to run our controllers on the Crazyflie dro
 ::: {.video-container}
 <!-- Replace with your YouTube or local video embed -->
 <iframe src="https://drive.google.com/file/d/1trPl_-HseYt0UzmFm8eOWNRaOzIBWXjn/preview" width="640" height="480"></iframe>
-
-
 :::
 
 :::
