@@ -71,28 +71,6 @@ We are building and testing various trajectory planning algorithms for a Crazyfl
 :::
 
 
-
-
-::: {.section-container}
-
-
-## State Estimation Framework {.section-title}
-![](static/images/State-Estimation-Framework.png)
-
-
-:::
-
-
-::: {.section-container}
-
-
-## Trajectory Planning {.section-title}
-![](static/images/Waypoint-Following.png)
-
-
-:::
-
-
 ::: {.section-container}
 
 
@@ -106,7 +84,7 @@ We are building and testing various trajectory planning algorithms for a Crazyfl
 <!-- ASTAR -->
 <!-- ============================================================ -->
 
-## Path Planning: Astar {.section-title}
+## Path Planning: A$^*$ {.section-title}
 
 <!-- ============================================================ -->
 <!-- TRAJECTORY GENERATION -->
@@ -138,30 +116,30 @@ We have tested multiple controllers in simulation and gathered performance metri
 
 :::
 
-### Desired vs Actual Trajectory
+### Desired vs. Actual Trajectory
 
 ::: {.content-text}
-Position, velocity, acceleration controller's desired vs actual trajectory:
+Position, Velocity, Acceleration Controller's Desired vs. Actual Trajectory:
 :::
 
 ![](static/images/traj_desired_vs_actual.png)
 
 ::: {.content-text}
-PID controller's desired vs actual trajectory:
+PID Controller's Desired vs. Actual Trajectory:
 :::
 
 ![](static/images/desired_vs_actual.png)
 
-### Root Mean Squared Tracking Error
+### Root Mean Squared Error Metric for Tracking Error
 
 ::: {.content-text}
-Position, velocity, acceleration controller's RMSE:
+Position, Velocity, Acceleration Controller's RMSE:
 :::
 
 ![](static/images/traj_rmse_plot.png)
 
 ::: {.content-text}
-PID controller's RMSE:
+PID Controller's RMSE:
 :::
 
 ::: {.content-text}
