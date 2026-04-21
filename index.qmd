@@ -239,7 +239,7 @@ controller to surpass the position, velocity, acceleration controller in perform
 
 ## Crazyflie Simulation and Hardware Videos {.section-title}
 
-### Simulation of Position-Velocity-Accleration Controller
+### Simulation of Position-Velocity-Acceleration Controller
 ::: {.video-container}
 <!-- Replace with your YouTube or local video embed -->
 <iframe src="https://drive.google.com/file/d/1trPl_-HseYt0UzmFm8eOWNRaOzIBWXjn/preview" width="640" height="480"></iframe>
