@@ -154,7 +154,7 @@ The gains are as follows:
 | K_{Pz} = 10 | K_{Dz} = 1.5 | K_{Iz} = 1 |
 The desired roll and pitch angles and thrust are computed as:
 $$\phi_d = \tan^{-1}(\frac{u_y\cos(\theta)}{g - u_z})$$
-$$\roll_d = \tan^{-1}(\frac{u_x}{u_z - g})$$
+$$\theta_d = \tan^{-1}(\frac{u_x}{u_z - g})$$
 $$thrust = m*(u_z + g)$$
 
 :::
