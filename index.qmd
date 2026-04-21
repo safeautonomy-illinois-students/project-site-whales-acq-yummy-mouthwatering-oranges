@@ -154,10 +154,11 @@ $$u_y = -K_{Py}*e - K_{Dy}*\frac{de}{dt} + K_{Iy}*\int_0^t e dt$$
 $$u_z = K_{Pz}*e + K_{Dz}*\frac{de}{dt} + K_{Iz}*\int_0^t e dt$$
 with the corresponding PID gains for each direction.
 The gains are as follows:
-|-------------|--------------|--------------|
-| K_{Px} = 18 | K_{Dx} = 7   | K_{Ix} = 0.2 |
-| K_{Py} = 18 | K_{Dy} = 7   | K_{Iy} = 0.2 |
-| K_{Pz} = 10 | K_{Dz} = 1.5 | K_{Iz} = 1   |
+| Axis | Kp  | Kd  | Ki  |
+|------|-----|-----|-----|
+| X    | 18  | 7   | 0.2 |
+| Y    | 18  | 7   | 0.2 |
+| Z    | 10  | 1.5 | 1   |
 The desired roll and pitch angles and thrust are computed as:
 $$\phi_d = \tan^{-1}(\frac{u_y\cos(\theta)}{g - u_z})$$
 $$\theta_d = \tan^{-1}(\frac{u_x}{u_z - g})$$
