@@ -134,12 +134,21 @@ or gate 2, the lower its weight.
 
 ### Position-Velocity-Acceleration Controller
 ::: {.content-text}
-Position, velocity, and acceleration
+The aboslute position, velocity, and acceleration references from the trajectory are provided directly to the inner-loop flight controller.
+The inner-loop flight controller then works to achieve these desired references.
 :::
 
 ### PID Controller
 ::: {.content-text}
-The PID controller [@mathworks_quadrotor_ilc] provides 
+The PID controller outputs an attitude command that is fed to the inner-loop flight controller.
+Based off of the error between the quadrotor's current position and the desired trajectory, an acceleration that minimizes this error is weighted among 
+An error for each direction is computed as $e = (e_x, e_y, e_z) = (x_{desired} - x_{current}, y_{desired} - y_{current}, z_{desired} - z_{current})$.
+The acceleration inputs are computed as follows based off 
+$$u_x = -K_{Px}*e - K_{Dx}*\frac{de}{dt} + K_{Ix}*\int_0^t e dt$$
+$$u_y = -K_{Py}*e - K_{Dy}*\frac{de}{dt} + K_{Iy}*\int_0^t e dt$$
+$$u_z = -K_{Pz}*e - K_{Dz}*\frac{de}{dt} + K_{Iz}*\int_0^t e dt$$
+with the corresponding gains
+
 :::
 
 ::: {.section-container}
@@ -197,13 +206,15 @@ PID Controller's RMSE:
 ## Crazyflie Simluation and Hardware Videos {.section-title}
 
 ### Simulation of Position-Velocity-Accleration Controller
-::: {.content-text}
-
+::: {.video-container}
+<!-- Replace with your YouTube or local video embed -->
+<iframe src="https://drive.google.com/file/d/1trPl_-HseYt0UzmFm8eOWNRaOzIBWXjn/preview" width="640" height="480"></iframe>
 :::
 
 ### Simulation of PID Controller
-::: {.content-text}
-
+::: {.video-container}
+<!-- Replace with your YouTube or local video embed -->
+<iframe src="https://drive.google.com/file/d/1trPl_-HseYt0UzmFm8eOWNRaOzIBWXjn/preview" width="640" height="480"></iframe>
 :::
 
 ### Crazyflie Hardware Hover Demo
@@ -225,7 +236,23 @@ We have performed the hardware setup to run our controllers on the Crazyflie dro
 ::: {.section-container}
 
 ## Preliminary Testing on Varying Course Configurations {.section-title}
+::: {.content-text}
+$$\begin{table}[]
+\begin{tabular}{|l|l|l|}
+\hline
+Course Configuration & Pos-Vel-Accel & PID     \\ \hline
+Course 1             & 4 Gates       & 4 Gates \\ \hline
+Course 2             & 1 Gate        & 1 Gate  \\ \hline
+Course 3             & 3 Gates       & 4 Gates \\ \hline
+Course 4             & 1 Gate        & 0 Gates \\ \hline
+Course 5             & 0 Gates       & 0 Gates \\ \hline
+Course 6             & 4 Gates       & 0 Gates \\ \hline
+\end{tabular}
+\end{table}$$
+The table above displays the number of gates passed through using the two different control policies for various course configurations.
+The 4th gate is the final gate.
 
+:::
 
 :::
 
