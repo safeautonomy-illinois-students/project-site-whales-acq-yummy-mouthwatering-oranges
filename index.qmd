@@ -101,6 +101,7 @@ $$
 :::
 
 ![](static/images/smooth_spline_interp_of_astar_waypoints_lam_2_gates.png)
+![](static/images/level2.png)
 
 ::: {.section-container}
 
@@ -142,9 +143,7 @@ Position, Velocity, Acceleration Controller's RMSE:
 PID Controller's RMSE:
 :::
 
-::: {.content-text}
-ADD IN IMAGE LATER
-:::
+![](static/images/pid_rmse_plot.png)
 
 :::
 
