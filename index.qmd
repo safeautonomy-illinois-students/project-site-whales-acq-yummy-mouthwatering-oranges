@@ -76,7 +76,9 @@ We are building and testing various trajectory planning algorithms for a Crazyfl
 
 ## Architecture and Flow {.section-title}
 ![](static/images/Architecture_and_Flow.png)
-
+::: {.content-text}
+Below, we will introduce and discuss the various algorithms that make up this pipeline.
+:::
 
 :::
 
@@ -90,7 +92,7 @@ We are building and testing various trajectory planning algorithms for a Crazyfl
 <!-- TRAJECTORY GENERATION -->
 <!-- ============================================================ -->
 
-## Trajectory Generation {.section-title}
+## Trajectory Generation: Spline Interpolation and Smoothing {.section-title}
 
 ::: {.content-text}
 $$
@@ -101,7 +103,23 @@ $$
 :::
 
 ![](static/images/smooth_spline_interp_of_astar_waypoints_lam_2_gates.png)
-![](static/images/level2.png)
+![](static/images/level2_track.png)
+
+<!-- ============================================================ -->
+<!-- CONTROL -->
+<!-- ============================================================ -->
+
+## Control Policies: Position-Velocity-Acceleration and PID {.section-title}
+
+### Position-Velocity-Acceleration Controller
+::: {.content-text}
+Position, velocity, and acceleration
+:::
+
+### PID Controller
+::: {.content-text}
+The PID controller provides 
+:::
 
 ::: {.section-container}
 
@@ -109,7 +127,7 @@ $$
 <!-- METRICS/PLOTS -->
 <!-- ============================================================ -->
 
-## Metrics and Plots {.section-title}
+## Performance Metrics and Plots {.section-title}
 
 
 ::: {.content-text}
@@ -154,10 +172,18 @@ PID Controller's RMSE:
 
 ::: {.section-container}
 
-## Crazyflie Hovering Video {.section-title}
+## Simulation of Position-Velocity-Accleration Controller
+::: {.content-text}
+
+:::
+## Simulation of PID Controller
+::: {.content-text}
+
+:::
+## Crazyflie Hardware Hovering Video {.section-title}
 
 ::: {.content-text}
-We have done the hardware setup to run our controllers on the Crazyflie drone. Here is a video of the drone hovering.
+We have performed the hardware setup to run our controllers on the Crazyflie drone. Below is a video of the drone hovering at a constant 0.4 meters off the ground.
 :::
 
 ::: {.video-container}
@@ -167,40 +193,30 @@ We have done the hardware setup to run our controllers on the Crazyflie drone. H
 
 :::
 
-## CrazySim Demo Video {.section-title}
-
-
-::: {.content-text}
-We have setup the simulator for Crazyflie with a video below showing a drone flying through square rings.
 :::
 
-
-::: {.video-container}
-<!-- Replace with your YouTube or local video embed -->
-<iframe
-  data-external="1"
-  src="https://drive.google.com/file/d/19gJNhy83WSmalq7L3kvWXCReEqtnhzXn/preview"
-  width="640"
-  height="480" >
-</iframe>
-
-
-:::
-
-:::
-
+<!-- ============================================================ -->
+<!-- Preliminary Testing on Varying Course Configurations -->
+<!-- ============================================================ -->
 
 ::: {.section-container}
 
+## Preliminary Testing on Varying Course Configurations {.section-title}
 
-## Plan for Work Allocation {.section-title}
-
-
-::: {.content-text}
-One person will work developing the state estimator, another will work on the position and velocity controller, and another will work on developing and implementing the various trajectory planning algorithms.
-:::
 
 :::
+
+<!-- ============================================================ -->
+<!-- Takeaways and Future Work -->
+<!-- ============================================================ -->
+
+::: {.section-container}
+
+## Takeaways and Future Work {.section-title}
+
+
+:::
+
 
 <!-- ===Everything below here is from the template=== -->
 
