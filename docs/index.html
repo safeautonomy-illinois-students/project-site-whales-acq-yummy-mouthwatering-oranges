@@ -286,7 +286,7 @@ window.Quarto = {
 <section id="pid-controller" class="level3">
 <h3 class="anchored">PID Controller</h3>
 <div class="content-text">
-<p>The PID controller outputs an attitude command that is fed to the inner-loop flight controller. Based off of the error between the quadrotor’s current position and the desired trajectory, an acceleration that minimizes this error is weighted among An error for each direction is computed as <span class="math inline">\(e = (e_x, e_y, e_z) = (x_{desired} - x_{current}, y_{desired} - y_{current}, z_{desired} - z_{current})\)</span>. The acceleration inputs are computed as follows based off <span class="math display">\[u_x = -K_{Px}*e - K_{Dx}*\frac{de}{dt} + K_{Ix}*\int_0^t e dt\]</span> <span class="math display">\[u_y = -K_{Py}*e - K_{Dy}*\frac{de}{dt} + K_{Iy}*\int_0^t e dt\]</span> <span class="math display">\[u_z = -K_{Pz}*e - K_{Dz}*\frac{de}{dt} + K_{Iz}*\int_0^t e dt\]</span> with the corresponding gains</p>
+<p>The PID controller outputs an attitude command that is fed to the inner-loop flight controller. Based off of the error between the quadrotor’s current position and the desired trajectory, an acceleration that minimizes this error is computed and converted into the desired attitude command. An error for each direction is computed as <span class="math inline">\(e = (e_x, e_y, e_z) = (x_{desired} - x_{current}, y_{desired} - y_{current}, z_{desired} - z_{current})\)</span>. The acceleration inputs are computed as follows based off <span class="math display">\[u_x = -K_{Px}*e - K_{Dx}*\frac{de}{dt} + K_{Ix}*\int_0^t e dt\]</span> <span class="math display">\[u_y = -K_{Py}*e - K_{Dy}*\frac{de}{dt} + K_{Iy}*\int_0^t e dt\]</span> <span class="math display">\[u_z = K_{Pz}*e + K_{Dz}*\frac{de}{dt} + K_{Iz}*\int_0^t e dt\]</span> with the corresponding PID gains for each direction. The gains are as follows: | K_{Px} = 18 | K_{Dx} = 7 | K_{Ix} = 0.2 | | K_{Py} = 18 | K_{Dy} = 7 | K_{Iy} = 0.2 | | K_{Pz} = 10 | K_{Dz} = 1.5 | K_{Iz} = 1 | The desired roll and pitch angles and thrust are computed as: <span class="math display">\[\phi_d = \tan^{-1}(\frac{u_y\cos(\theta)}{g - u_z})\]</span> <span class="math display">\[\theta_d = \tan^{-1}(\frac{u_x}{u_z - g})\]</span> <span class="math display">\[thrust = m*(u_z + g)\]</span></p>
 </div>
 <div class="section-container">
 <!-- ============================================================ -->
@@ -344,11 +344,11 @@ window.Quarto = {
 </section>
 <section id="crazyflie-simulation-and-hardware-videos" class="level2 section-title section-container">
 <h2 class="section-title anchored" data-anchor-id="crazyflie-simulation-and-hardware-videos">Crazyflie Simulation and Hardware Videos</h2>
-<section id="simulation-of-position-velocity-accleration-controller" class="level3">
-<h3 class="anchored" data-anchor-id="simulation-of-position-velocity-accleration-controller">Simulation of Position-Velocity-Accleration Controller</h3>
+<section id="simulation-of-position-velocity-acceleration-controller" class="level3">
+<h3 class="anchored" data-anchor-id="simulation-of-position-velocity-acceleration-controller">Simulation of Position-Velocity-Acceleration Controller</h3>
 <div class="video-container">
 <!-- Replace with your YouTube or local video embed -->
-<iframe src="https://drive.google.com/file/d/1trPl_-HseYt0UzmFm8eOWNRaOzIBWXjn/preview" width="640" height="480">
+<iframe src="https://drive.google.com/file/d/1Y3yMnmIy9ZMSvJoYKQyJ7HfLvOh8qcbF/preview" width="640" height="480">
 </iframe>
 </div>
 </section>
@@ -356,7 +356,7 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="simulation-of-pid-controller">Simulation of PID Controller</h3>
 <div class="video-container">
 <!-- Replace with your YouTube or local video embed -->
-<iframe src="https://drive.google.com/file/d/1trPl_-HseYt0UzmFm8eOWNRaOzIBWXjn/preview" width="640" height="480">
+<iframe src="https://drive.google.com/file/d/1W3QrOsuxsh2g_sG2H-VPxvTy9XZU4lEV/preview" width="640" height="480">
 </iframe>
 </div>
 </section>
@@ -367,7 +367,7 @@ window.Quarto = {
 </div>
 <div class="video-container">
 <!-- Replace with your YouTube or local video embed -->
-<iframe src="https://drive.google.com/file/d/1trPl_-HseYt0UzmFm8eOWNRaOzIBWXjn/preview" width="640" height="480">
+<iframe src="https://drive.google.com/file/d/1sl6MaTy3SprXmrG7_u4-0DvOkd0exGFI/preview" width="640" height="480">
 </iframe>
 </div>
 </section>
@@ -427,6 +427,12 @@ window.Quarto = {
 <!-- ============================================================ -->
 <section id="takeaways-and-future-work" class="level2 section-title section-container">
 <h2 class="section-title anchored" data-anchor-id="takeaways-and-future-work">Takeaways and Future Work</h2>
+<div class="content-text">
+<p>The main takeaway from our results is to improve robustness of our controllers. Both the position, velocity, acceleration controller and the PID controller have low average success rates when tested on a variety of different gate and obstacle configurations.</p>
+<p>In addition, as stated earlier, in order to improve our PID controller to perform better than our position, velocity, acceleration controller, we need to do more fine tuning of gains. We will also need to adjust our gains to work with speed improvements that we implement in the future.</p>
+<p>We will need to do some more investigation into causes of drone crashes in simulation, to better determine whether the path planned by A<span class="math inline">\(^*\)</span> or the controller’s following of the path is at fault. It may be that in addition to improving our controllers, we can tune the constraints in our A<span class="math inline">\(^*\)</span> path planner to give more safety margin to keep the drone from crashing. We may also experiment with implementing an RRT path planner.</p>
+<p>Furthermore, we plan to implement more controllers, perhaps Linear Quadratic Regulator or Model Predictive Control, and compare these to the two controllers we currently have.</p>
+</div>
 </section>
 <!-- ===Everything below here is from the template=== -->
 <!-- ============================================================ -->

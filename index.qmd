@@ -308,6 +308,23 @@ The 4th gate is the final gate.
 
 ## Takeaways and Future Work {.section-title}
 
+::: {.content-text}
+The main takeaway from our results is to improve robustness of our controllers.
+Both the position, velocity, acceleration controller and the PID controller have low average 
+success rates when tested on a variety of different gate and obstacle configurations.
+
+In addition, as stated earlier, in order to improve our PID controller to perform better than 
+our position, velocity, acceleration controller, we need to do more fine tuning of gains. We will 
+also need to adjust our gains to work with speed improvements that we implement in the future.
+
+We will need to do some more investigation into causes of drone crashes in simulation, to better determine whether the path planned 
+by A$^*$ or the controller's following of the path is at fault. It may be that in addition to improving our controllers, 
+we can tune the constraints in our A$^*$ path planner to give more safety margin to keep the drone from crashing. 
+We may also experiment with implementing an RRT path planner.
+
+Furthermore, we plan to implement more controllers, perhaps Linear Quadratic Regulator or Model 
+Predictive Control, and compare these to the two controllers we currently have.
+:::
 
 :::
 
