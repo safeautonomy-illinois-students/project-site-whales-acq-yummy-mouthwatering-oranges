@@ -102,6 +102,28 @@ We are building and testing various trajectory planning algorithms for a Crazyfl
 
 :::
 
+<!-- ============================================================ -->
+<!-- ASTAR -->
+<!-- ============================================================ -->
+
+## Path Planning: Astar {.section-title}
+
+<!-- ============================================================ -->
+<!-- TRAJECTORY GENERATION -->
+<!-- ============================================================ -->
+
+## Trajectory Generation {.section-title}
+
+::: {.content-text}
+$$
+\underbrace{\sum_{i=1}^n w_i \left\| y_i - f(x_i) \right\|^2}_{\text{data fidelity (weighted least squares)}}
+\;+\;
+\underbrace{\lambda \int_{x_1}^{x_n} \left( f^{(2)}(u) \right)^2 \, du}_{\text{smoothness penalty (curvature)}}
+$$
+:::
+
+![](static/images/smooth_spline_interp_of_astar_waypoints_lam_2_gates.png)
+
 ::: {.section-container}
 
 <!-- ============================================================ -->
@@ -111,10 +133,40 @@ We are building and testing various trajectory planning algorithms for a Crazyfl
 ## Metrics and Plots {.section-title}
 
 
-::: {.metrics_and_plots-text}
+::: {.content-text}
 We have tested multiple controllers in simulation and gathered performance metrics.
+
 :::
 
+### Desired vs Actual Trajectory
+
+::: {.content-text}
+Position, velocity, acceleration controller's desired vs actual trajectory:
+:::
+
+![](static/images/traj_desired_vs_actual.png)
+
+::: {.content-text}
+PID controller's desired vs actual trajectory:
+:::
+
+![](static/images/desired_vs_actual.png)
+
+### Root Mean Squared Tracking Error
+
+::: {.content-text}
+Position, velocity, acceleration controller's RMSE:
+:::
+
+![](static/images/traj_rmse_plot.png)
+
+::: {.content-text}
+PID controller's RMSE:
+:::
+
+::: {.content-text}
+ADD IN IMAGE LATER
+:::
 
 :::
 

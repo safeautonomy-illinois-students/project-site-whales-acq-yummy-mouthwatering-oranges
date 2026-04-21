@@ -110,6 +110,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -164,8 +193,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="trajectory-planning-and-velocity-optimization-for-crazyflie-2.1-quadrotor" class="level1 title hero-section">
-<h1 class="title">Trajectory Planning and Velocity Optimization for Crazyflie 2.1 Quadrotor</h1>
+<section id="trajectory-planning-and-control-for-crazyflie-2.1-quadrotor" class="level1 title hero-section">
+<h1 class="title">Trajectory Planning and Control for Crazyflie 2.1 Quadrotor</h1>
 <div class="subtitle">
 <p>Seeking safe, efficient, and fast drone navigation through an obstacle course.</p>
 </div>
@@ -202,20 +231,64 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="section-title anchored" data-anchor-id="architecture-and-flow">Architecture and Flow</h2>
 <p><img src="static/images/Architecture_and_Flow.png" class="img-fluid"></p>
 </section>
+<!-- ============================================================ -->
+<!-- ASTAR -->
+<!-- ============================================================ -->
+<section id="path-planning-astar" class="level2 section-title">
+<h2 class="section-title anchored" data-anchor-id="path-planning-astar">Path Planning: Astar</h2>
+<!-- ============================================================ -->
+<!-- TRAJECTORY GENERATION -->
+<!-- ============================================================ -->
+</section>
+<section id="trajectory-generation" class="level2 section-title">
+<h2 class="section-title anchored" data-anchor-id="trajectory-generation">Trajectory Generation</h2>
+<div class="content-text">
+<p><span class="math display">\[
+\underbrace{\sum_{i=1}^n w_i \left\| y_i - f(x_i) \right\|^2}_{\text{data fidelity (weighted least squares)}}
+\;+\;
+\underbrace{\lambda \int_{x_1}^{x_n} \left( f^{(2)}(u) \right)^2 \, du}_{\text{smoothness penalty (curvature)}}
+\]</span></p>
+</div>
+<p><img src="static/images/smooth_spline_interp_of_astar_waypoints_lam_2_gates.png" class="img-fluid"></p>
 <div class="section-container">
 <!-- ============================================================ -->
 <!-- METRICS/PLOTS -->
 <!-- ============================================================ -->
 <section id="metrics-and-plots" class="level2 section-title">
 <h2 class="section-title anchored" data-anchor-id="metrics-and-plots">Metrics and Plots</h2>
-<div class="metrics_and_plots-text">
+<div class="content-text">
 <p>We have tested multiple controllers in simulation and gathered performance metrics.</p>
 </div>
+<section id="desired-vs-actual-trajectory" class="level3">
+<h3 class="anchored" data-anchor-id="desired-vs-actual-trajectory">Desired vs Actual Trajectory</h3>
+<div class="content-text">
+<p>Position, velocity, acceleration controller’s desired vs actual trajectory:</p>
+</div>
+<p><img src="static/images/traj_desired_vs_actual.png" class="img-fluid"></p>
+<div class="content-text">
+<p>PID controller’s desired vs actual trajectory:</p>
+</div>
+<p><img src="static/images/desired_vs_actual.png" class="img-fluid"></p>
+</section>
+<section id="root-mean-squared-tracking-error" class="level3">
+<h3 class="anchored" data-anchor-id="root-mean-squared-tracking-error">Root Mean Squared Tracking Error</h3>
+<div class="content-text">
+<p>Position, velocity, acceleration controller’s RMSE:</p>
+</div>
+<p><img src="static/images/traj_rmse_plot.png" class="img-fluid"></p>
+<div class="content-text">
+<p>PID controller’s RMSE:</p>
+</div>
+<div class="content-text">
+<p>ADD IN IMAGE LATER</p>
+</div>
+</section>
 </section>
 </div>
 <!-- ============================================================ -->
 <!-- OVERVIEW / METHOD VIDEO -->
 <!-- ============================================================ -->
+</section>
 <div class="section-container">
 <section id="crazyflie-hovering-video" class="level2 section-title">
 <h2 class="section-title anchored" data-anchor-id="crazyflie-hovering-video">Crazyflie Hovering Video</h2>
