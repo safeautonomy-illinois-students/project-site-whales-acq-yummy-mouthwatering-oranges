@@ -10,7 +10,7 @@ format:
 ::: {.hero-section}
 
 
-# Trajectory Planning and Velocity Optimization for Crazyflie 2.1 Quadrotor{.title}
+# Trajectory Planning and Control for Crazyflie 2.1 Quadrotor{.title}
 
 
 ::: {.subtitle}
