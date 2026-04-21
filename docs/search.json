@@ -42,6 +42,13 @@
     "text": "CrazySim Demo Video\n\nWe have setup the simulator for Crazyflie with a video below showing a drone flying through square rings."
   },
   {
+    "objectID": "index.html#crazyflie-hovering-video",
+    "href": "index.html#crazyflie-hovering-video",
+    "title": "Trajectory Planning and Velocity Optimization for Crazyflie 2.1 Quadrotor",
+    "section": "Crazyflie Hovering Video",
+    "text": "Crazyflie Hovering Video\n\nWe have done the hardware setup to run our controllers on the Crazyflie drone. Here is a video of the drone hovering."
+  },
+  {
     "objectID": "index.html#plan-for-work-allocation",
     "href": "index.html#plan-for-work-allocation",
     "title": "Trajectory Planning and Velocity Optimization for Crazyflie 2.1 Quadrotor",

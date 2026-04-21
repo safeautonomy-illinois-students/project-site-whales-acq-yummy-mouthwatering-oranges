@@ -130,6 +130,18 @@ We have setup the simulator for Crazyflie with a video below showing a drone fly
 
 :::
 
+## Crazyflie Hovering Video {.section-title}
+
+::: {.content-text}
+We have done the hardware setup to run our controllers on the Crazyflie drone. Here is a video of the drone hovering.
+:::
+
+::: {.video-container}
+<!-- Replace with your YouTube or local video embed -->
+<iframe src="https://drive.google.com/file/d/1trPl_-HseYt0UzmFm8eOWNRaOzIBWXjn/preview" width="640" height="480"></iframe>
+
+
+:::
 
 :::
 
