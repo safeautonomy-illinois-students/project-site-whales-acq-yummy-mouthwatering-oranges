@@ -179,6 +179,18 @@ PID Controller's Desired vs. Actual Trajectory:
 
 ![](static/images/desired_vs_actual.png)
 
+::: {.content-text}
+Both of these simulation runs are on configuration level1.toml. 
+
+The position, velocity, acceleration controller's x and y position 
+closely follow the desired x and y position, even better than the PID controller.
+The z position has a small close to constant offset from the desired z position throughout 
+the run.
+
+The PID controller's x and y position closely follow the desired x and y position.
+The z position oscillates slightly around the desired z position throughout the run. 
+:::
+
 ### Root Mean Squared Error Metric for Tracking Error
 
 ::: {.content-text}
@@ -193,6 +205,28 @@ PID Controller's RMSE:
 
 ![](static/images/pid_rmse_plot.png)
 
+::: {.content-text}
+Both of these simulation runs, although not the exact same runs as for the 
+trajectory tracking plots, are also on configuration level1.toml. 
+
+The position, velocity, acceleration controller's x and y position errors are relatively 
+low. The x error shoots up in the beginning and quickly flattens out.
+The z position, as seen in the trajectory plot as well, 
+has a constant error from the desired z position. 
+
+The PID controller's x and y position errors follow similar shapes to that of the position, 
+velocity, acceleration controller, although slightly higher. The z error has a different shape, 
+shooting up in the beginning and then coming down into a smooth downward slope after a few oscillations. 
+The z error also is higher than in the position, velocity, acceleration controller.
+:::
+
+#### Takeaways From the Trajectory and RMSE Plots
+
+::: {.content-text}
+From this tracking error data, it is clear we need to do some gain fine tuning to allow our PID 
+controller to surpass the position, velocity, acceleration controller in performance.
+:::
+
 :::
 
 <!-- ============================================================ -->
@@ -203,7 +237,7 @@ PID Controller's RMSE:
 ::: {.section-container}
 
 
-## Crazyflie Simluation and Hardware Videos {.section-title}
+## Crazyflie Simulation and Hardware Videos {.section-title}
 
 ### Simulation of Position-Velocity-Accleration Controller
 ::: {.video-container}

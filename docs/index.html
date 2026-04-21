@@ -280,13 +280,13 @@ window.Quarto = {
 <section id="position-velocity-acceleration-controller" class="level3">
 <h3 class="anchored" data-anchor-id="position-velocity-acceleration-controller">Position-Velocity-Acceleration Controller</h3>
 <div class="content-text">
-<p>Position, velocity, and acceleration</p>
+<p>The aboslute position, velocity, and acceleration references from the trajectory are provided directly to the inner-loop flight controller. The inner-loop flight controller then works to achieve these desired references.</p>
 </div>
 </section>
 <section id="pid-controller" class="level3">
 <h3 class="anchored">PID Controller</h3>
 <div class="content-text">
-<p>The PID controller <span class="citation" data-cites="mathworks_quadrotor_ilc"><a href="#ref-mathworks_quadrotor_ilc" role="doc-biblioref">[2]</a></span> provides</p>
+<p>The PID controller outputs an attitude command that is fed to the inner-loop flight controller. Based off of the error between the quadrotor’s current position and the desired trajectory, an acceleration that minimizes this error is weighted among An error for each direction is computed as <span class="math inline">\(e = (e_x, e_y, e_z) = (x_{desired} - x_{current}, y_{desired} - y_{current}, z_{desired} - z_{current})\)</span>. The acceleration inputs are computed as follows based off <span class="math display">\[u_x = -K_{Px}*e - K_{Dx}*\frac{de}{dt} + K_{Ix}*\int_0^t e dt\]</span> <span class="math display">\[u_y = -K_{Py}*e - K_{Dy}*\frac{de}{dt} + K_{Iy}*\int_0^t e dt\]</span> <span class="math display">\[u_z = -K_{Pz}*e - K_{Dz}*\frac{de}{dt} + K_{Iz}*\int_0^t e dt\]</span> with the corresponding gains</p>
 </div>
 <div class="section-container">
 <!-- ============================================================ -->
@@ -307,6 +307,11 @@ window.Quarto = {
 <p>PID Controller’s Desired vs.&nbsp;Actual Trajectory:</p>
 </div>
 <p><img src="static/images/desired_vs_actual.png" class="img-fluid"></p>
+<div class="content-text">
+<p>Both of these simulation runs are on configuration level1.toml.</p>
+<p>The position, velocity, acceleration controller’s x and y position closely follow the desired x and y position, even better than the PID controller. The z position has a small close to constant offset from the desired z position throughout the run.</p>
+<p>The PID controller’s x and y position closely follow the desired x and y position. The z position oscillates slightly around the desired z position throughout the run.</p>
+</div>
 </section>
 <section id="root-mean-squared-error-metric-for-tracking-error" class="level3">
 <h3 class="anchored" data-anchor-id="root-mean-squared-error-metric-for-tracking-error">Root Mean Squared Error Metric for Tracking Error</h3>
@@ -318,6 +323,17 @@ window.Quarto = {
 <p>PID Controller’s RMSE:</p>
 </div>
 <p><img src="static/images/pid_rmse_plot.png" class="img-fluid"></p>
+<div class="content-text">
+<p>Both of these simulation runs, although not the exact same runs as for the trajectory tracking plots, are also on configuration level1.toml.</p>
+<p>The position, velocity, acceleration controller’s x and y position errors are relatively low. The x error shoots up in the beginning and quickly flattens out. The z position, as seen in the trajectory plot as well, has a constant error from the desired z position.</p>
+<p>The PID controller’s x and y position errors follow similar shapes to that of the position, velocity, acceleration controller, although slightly higher. The z error has a different shape, shooting up in the beginning and then coming down into a smooth downward slope after a few oscillations. The z error also is higher than in the position, velocity, acceleration controller.</p>
+</div>
+<section id="takeaways-from-the-trajectory-and-rmse-plots" class="level4">
+<h4 class="anchored" data-anchor-id="takeaways-from-the-trajectory-and-rmse-plots">Takeaways From the Trajectory and RMSE Plots</h4>
+<div class="content-text">
+<p>From this tracking error data, it is clear we need to do some gain fine tuning to allow our PID controller to surpass the position, velocity, acceleration controller in performance.</p>
+</div>
+</section>
 </section>
 </section>
 </div>
@@ -326,18 +342,22 @@ window.Quarto = {
 <!-- ============================================================ -->
 </section>
 </section>
-<section id="crazyflie-simluation-and-hardware-videos" class="level2 section-title section-container">
-<h2 class="section-title anchored" data-anchor-id="crazyflie-simluation-and-hardware-videos">Crazyflie Simluation and Hardware Videos</h2>
+<section id="crazyflie-simulation-and-hardware-videos" class="level2 section-title section-container">
+<h2 class="section-title anchored" data-anchor-id="crazyflie-simulation-and-hardware-videos">Crazyflie Simulation and Hardware Videos</h2>
 <section id="simulation-of-position-velocity-accleration-controller" class="level3">
 <h3 class="anchored" data-anchor-id="simulation-of-position-velocity-accleration-controller">Simulation of Position-Velocity-Accleration Controller</h3>
-<div class="content-text">
-
+<div class="video-container">
+<!-- Replace with your YouTube or local video embed -->
+<iframe src="https://drive.google.com/file/d/1trPl_-HseYt0UzmFm8eOWNRaOzIBWXjn/preview" width="640" height="480">
+</iframe>
 </div>
 </section>
 <section id="simulation-of-pid-controller" class="level3">
 <h3 class="anchored" data-anchor-id="simulation-of-pid-controller">Simulation of PID Controller</h3>
-<div class="content-text">
-
+<div class="video-container">
+<!-- Replace with your YouTube or local video embed -->
+<iframe src="https://drive.google.com/file/d/1trPl_-HseYt0UzmFm8eOWNRaOzIBWXjn/preview" width="640" height="480">
+</iframe>
 </div>
 </section>
 <section id="crazyflie-hardware-hover-demo" class="level3">
@@ -357,6 +377,50 @@ window.Quarto = {
 <!-- ============================================================ -->
 <section id="preliminary-testing-on-varying-course-configurations" class="level2 section-title section-container">
 <h2 class="section-title anchored" data-anchor-id="preliminary-testing-on-varying-course-configurations">Preliminary Testing on Varying Course Configurations</h2>
+<div class="content-text">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Course Configuration</th>
+<th>Pos-Vel-Accel</th>
+<th>PID</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Course 1</td>
+<td>4 Gates</td>
+<td>4 Gates</td>
+</tr>
+<tr class="even">
+<td>Course 2</td>
+<td>1 Gate</td>
+<td>1 Gate</td>
+</tr>
+<tr class="odd">
+<td>Course 3</td>
+<td>3 Gates</td>
+<td>4 Gates</td>
+</tr>
+<tr class="even">
+<td>Course 4</td>
+<td>1 Gate</td>
+<td>0 Gates</td>
+</tr>
+<tr class="odd">
+<td>Course 5</td>
+<td>0 Gates</td>
+<td>0 Gates</td>
+</tr>
+<tr class="even">
+<td>Course 6</td>
+<td>4 Gates</td>
+<td>0 Gates</td>
+</tr>
+</tbody>
+</table>
+<p>The table above displays the number of gates passed through using the two different control policies for various course configurations. The 4th gate is the final gate.</p>
+</div>
 </section>
 <!-- ============================================================ -->
 <!-- Takeaways and Future Work -->
@@ -543,9 +607,6 @@ Check out [this survey](https://example.com) for a comprehensive overview of the
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
 <div id="ref-scipy_smoothing_spline" class="csl-entry" role="listitem">
 <div class="csl-left-margin">[1] </div><div class="csl-right-inline">SciPy Developers, <span>“Scipy.interpolate.make_smoothing_spline.”</span> <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.make_smoothing_spline.html" class="uri">https://docs.scipy.org/doc/scipy/reference/generated/scipy.interpolate.make_smoothing_spline.html</a>.</div>
-</div>
-<div id="ref-mathworks_quadrotor_ilc" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[2] </div><div class="csl-right-inline">MathWorks, <span>“Quadrotor trajectory tracking using iterative learning control.”</span> <a href="https://www.mathworks.com/help/slcontrol/ug/quadrotor-trajectory-tracking-using-ilc.html" class="uri">https://www.mathworks.com/help/slcontrol/ug/quadrotor-trajectory-tracking-using-ilc.html</a>.</div>
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
