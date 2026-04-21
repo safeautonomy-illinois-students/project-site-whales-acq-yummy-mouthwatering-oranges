@@ -146,7 +146,7 @@ An error for each direction is computed as $e = (e_x, e_y, e_z) = (x_{desired} -
 The acceleration inputs are computed as follows based off 
 $$u_x = -K_{Px}*e - K_{Dx}*\frac{de}{dt} + K_{Ix}*\int_0^t e dt$$
 $$u_y = -K_{Py}*e - K_{Dy}*\frac{de}{dt} + K_{Iy}*\int_0^t e dt$$
-$$u_z = -K_{Pz}*e - K_{Dz}*\frac{de}{dt} + K_{Iz}*\int_0^t e dt$$
+$$u_z = K_{Pz}*e + K_{Dz}*\frac{de}{dt} + K_{Iz}*\int_0^t e dt$$
 with the corresponding gains
 
 :::
@@ -242,13 +242,13 @@ controller to surpass the position, velocity, acceleration controller in perform
 ### Simulation of Position-Velocity-Acceleration Controller
 ::: {.video-container}
 <!-- Replace with your YouTube or local video embed -->
-<iframe src="https://drive.google.com/file/d/1trPl_-HseYt0UzmFm8eOWNRaOzIBWXjn/preview" width="640" height="480"></iframe>
+<iframe src="https://drive.google.com/file/d/1Y3yMnmIy9ZMSvJoYKQyJ7HfLvOh8qcbF/preview" width="640" height="480"></iframe>
 :::
 
 ### Simulation of PID Controller
 ::: {.video-container}
 <!-- Replace with your YouTube or local video embed -->
-<iframe src="https://drive.google.com/file/d/1trPl_-HseYt0UzmFm8eOWNRaOzIBWXjn/preview" width="640" height="480"></iframe>
+<iframe src="https://drive.google.com/file/d/1W3QrOsuxsh2g_sG2H-VPxvTy9XZU4lEV/preview" width="640" height="480"></iframe>
 :::
 
 ### Crazyflie Hardware Hover Demo
@@ -258,7 +258,7 @@ We have performed the hardware setup to run our controllers on the Crazyflie dro
 
 ::: {.video-container}
 <!-- Replace with your YouTube or local video embed -->
-<iframe src="https://drive.google.com/file/d/1trPl_-HseYt0UzmFm8eOWNRaOzIBWXjn/preview" width="640" height="480"></iframe>
+<iframe src="https://drive.google.com/file/d/1sl6MaTy3SprXmrG7_u4-0DvOkd0exGFI/preview" width="640" height="480"></iframe>
 :::
 
 :::
