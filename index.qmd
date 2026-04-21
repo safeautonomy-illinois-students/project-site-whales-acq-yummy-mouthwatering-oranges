@@ -237,18 +237,14 @@ We have performed the hardware setup to run our controllers on the Crazyflie dro
 
 ## Preliminary Testing on Varying Course Configurations {.section-title}
 ::: {.content-text}
-$$\begin{table}[]
-\begin{tabular}{|l|l|l|}
-\hline
-Course Configuration & Pos-Vel-Accel & PID     \\ \hline
-Course 1             & 4 Gates       & 4 Gates \\ \hline
-Course 2             & 1 Gate        & 1 Gate  \\ \hline
-Course 3             & 3 Gates       & 4 Gates \\ \hline
-Course 4             & 1 Gate        & 0 Gates \\ \hline
-Course 5             & 0 Gates       & 0 Gates \\ \hline
-Course 6             & 4 Gates       & 0 Gates \\ \hline
-\end{tabular}
-\end{table}$$
+| Course Configuration | Pos-Vel-Accel | PID     |
+|----------------------|---------------|---------|
+| Course 1             | 4 Gates       | 4 Gates |
+| Course 2             | 1 Gate        | 1 Gate  |
+| Course 3             | 3 Gates       | 4 Gates |
+| Course 4             | 1 Gate        | 0 Gates |
+| Course 5             | 0 Gates       | 0 Gates |
+| Course 6             | 4 Gates       | 0 Gates |
 The table above displays the number of gates passed through using the two different control policies for various course configurations.
 The 4th gate is the final gate.
 
