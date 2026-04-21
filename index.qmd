@@ -132,7 +132,7 @@ $$
 \mathbf{w}_{\text{entry}} = \mathbf{p}_g - d\,\hat{\mathbf{n}}, \qquad \mathbf{w}_{\text{exit}} = \mathbf{p}_g + d\,\hat{\mathbf{n}}
 $$
 
-$\mathbf{w}_{\text{entry}}$ is the point the drone must reach before the gate, and $\mathbf{w}_{\text{exit}}$ is the point it must clear on the far side. Three additional high-priority waypoints—the entry approach, the gate center $\mathbf{p}_g$, and the exit approach—are always inserted explicitly into the final waypoint list (see the Waypoint Assembly section below), guaranteeing the drone passes through the center of every gate regardless of what the grid planner chooses.
+$\mathbf{w}_{\text{entry}}$ is the point the drone must reach before the gate, and $\mathbf{w}_{\text{exit}}$ is the point it must clear on the far side. These entry and exit waypoints are always added to the final waypoint list, which increased the probability of the drone successfully clearing each gate compared to when this was not in place.
 :::
 
 ### Heuristic
@@ -150,7 +150,7 @@ Because the actual step cost between any two adjacent cells is also their Euclid
 ### A$^*$ Search
 
 ::: {.content-text}
-The search operates on grid indices rather than metric coordinates. Each cell has up to 26 neighbors (the full 3D Moore neighborhood), reached by steps $(\delta x, \delta y, \delta z) \in \{-1,0,1\}^3 \setminus \{(0,0,0)\}$. The movement cost of each step equals its Euclidean length:
+The search operates on grid indices rather than metric coordinates. Each cell has up to 26 neighbors. The movement cost of each step equals its Euclidean length:
 
 $$
 c(\delta x, \delta y, \delta z) = \sqrt{\delta x^2 + \delta y^2 + \delta z^2}
@@ -198,7 +198,13 @@ where $j$ is the waypoint's index in the path and $n$ is the total number of poi
 | Gate center $\mathbf{p}_g^k$ | 5 |
 | Gate exit approach $\mathbf{w}_{\text{exit}}^k$ | 15 |
 
-The final output is a pair of arrays: an $(N \times 3)$ array of waypoint coordinates and an $(N,)$ array of weights. These are handed directly to the spline-smoothing stage described in the next section.
+The final output is a pair of arrays: an $(N \times 3)$ array of waypoint coordinates and an $(N,)$ array of weights. These are handed directly to the spline-smoothing stage.
+:::
+
+### Iterations and Key Design Decisions
+
+::: {.content-text}
+Our initial A$^*$ implementation had no explicit gate pass-through waypoints, which caused the drone's trajectory to clip the edge of gates rather than pass cleanly through the center. We fixed this by computing the entry and exit waypoints from the gate's normal vector and inserting them—along with the gate center—directly into the waypoint list. However, we then observed the drone treating some gates as free space—flying through their openings even when they weren't the target gate. Once the forced pass-through waypoints were in place, we simplified the grid by treating every gate as a fully solid obstacle, which eliminated that shortcutting behavior. We also discovered that the base of each gate post extends into the ground, so we adjusted the blocked cells to account for that region as well.
 :::
 
 :::
