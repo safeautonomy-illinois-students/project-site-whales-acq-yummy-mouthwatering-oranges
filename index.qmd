@@ -144,7 +144,7 @@ $$
 h(\mathbf{a}, \mathbf{b}) = \sqrt{(a_x - b_x)^2 + (a_y - b_y)^2 + (a_z - b_z)^2}
 $$
 
-Because the actual step cost between any two adjacent cells is also their Euclidean distance (see neighbor costs below), $h$ never overestimates the true cost-to-go, making it **admissible** and guaranteeing that A$^*$ finds an optimal path. [@mitra2026ece484lecture14]
+Because the actual step cost between any two adjacent cells is also their Euclidean distance (see neighbor costs below), $h$ never overestimates the true cost-to-go, making it **admissible** and guaranteeing that A$^*$ finds an optimal path.
 :::
 
 ### A$^*$ Search
@@ -158,7 +158,7 @@ $$
 
 so axis-aligned moves cost 1, face-diagonal moves cost $\sqrt{2}$, and body-diagonal moves cost $\sqrt{3}$.
 
-The algorithm maintains a min-heap `open_set` of $(f, \mathbf{s})$ pairs ordered by the $f$-score
+The algorithm maintains a min-heap of $(f, \mathbf{s})$ pairs ordered by the $f$-score
 
 $$
 f(\mathbf{s}) = g(\mathbf{s}) + h(\mathbf{s}, \mathbf{goal})
