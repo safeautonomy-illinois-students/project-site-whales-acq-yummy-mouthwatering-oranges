@@ -141,13 +141,21 @@ The inner-loop flight controller then works to achieve these desired references.
 ### PID Controller
 ::: {.content-text}
 The PID controller outputs an attitude command that is fed to the inner-loop flight controller.
-Based off of the error between the quadrotor's current position and the desired trajectory, an acceleration that minimizes this error is weighted among 
+Based off of the error between the quadrotor's current position and the desired trajectory, an acceleration that minimizes this error is computed and converted into the desired attitude command. 
 An error for each direction is computed as $e = (e_x, e_y, e_z) = (x_{desired} - x_{current}, y_{desired} - y_{current}, z_{desired} - z_{current})$.
-The acceleration inputs are computed as follows based off 
+The acceleration inputs are computed as follows based off
 $$u_x = -K_{Px}*e - K_{Dx}*\frac{de}{dt} + K_{Ix}*\int_0^t e dt$$
 $$u_y = -K_{Py}*e - K_{Dy}*\frac{de}{dt} + K_{Iy}*\int_0^t e dt$$
 $$u_z = K_{Pz}*e + K_{Dz}*\frac{de}{dt} + K_{Iz}*\int_0^t e dt$$
-with the corresponding gains
+with the corresponding PID gains for each direction.
+The gains are as follows:
+| K_{Px} = 18 | K_{Dx} = 7 | K_{Ix} = 0.2 |
+| K_{Py} = 18 | K_{Dy} = 7 | K_{Iy} = 0.2 |
+| K_{Pz} = 10 | K_{Dz} = 1.5 | K_{Iz} = 1 |
+The desired roll and pitch angles and thrust are computed as:
+$$\phi_d = \tan^{-1}(\frac{u_y\cos(\theta)}{g - u_z})$$
+$$\roll_d = \tan^{-1}(\frac{u_x}{u_z - g})$$
+$$thrust = m*(u_z + g)$$
 
 :::
 
