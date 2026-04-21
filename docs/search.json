@@ -14,67 +14,60 @@
     "text": "Abstract\n\nWe are building and testing various trajectory planning algorithms for a Crazyflie quadrotor that attempt to map the fastest path through an obstacle course. Through a state estimation framework utilizing measurements collected by sensors, the pose of the Crazyflie can be estimated. This trajectory and the estimated pose can be fed into a position and velocity controller that minimizes the amount of time it takes the quadrotor to complete the obstacle course. We are considering implementing different trajectory planning algorithms: linear fitting, polynomial fitting, and/or gradient descent with waypoints. We will consider implementing the speed controller using the Euclidean distance to the next obstacle and/or the curve of the trajectory, as well as incorporating sensor data. These algorithms will be developed and tested in simulation before being deployed to the hardware."
   },
   {
-    "objectID": "index.html#state-estimation-framework",
-    "href": "index.html#state-estimation-framework",
-    "title": "Trajectory Planning and Control for Crazyflie 2.1 Quadrotor",
-    "section": "State Estimation Framework",
-    "text": "State Estimation Framework"
-  },
-  {
-    "objectID": "index.html#trajectory-planning",
-    "href": "index.html#trajectory-planning",
-    "title": "Trajectory Planning and Control for Crazyflie 2.1 Quadrotor",
-    "section": "Trajectory Planning",
-    "text": "Trajectory Planning"
-  },
-  {
     "objectID": "index.html#architecture-and-flow",
     "href": "index.html#architecture-and-flow",
     "title": "Trajectory Planning and Control for Crazyflie 2.1 Quadrotor",
     "section": "Architecture and Flow",
-    "text": "Architecture and Flow"
+    "text": "Architecture and Flow\n\n\nBelow, we will introduce and discuss the various algorithms that make up this pipeline."
   },
   {
-    "objectID": "index.html#path-planning-astar",
-    "href": "index.html#path-planning-astar",
+    "objectID": "index.html#path-planning-a",
+    "href": "index.html#path-planning-a",
     "title": "Trajectory Planning and Control for Crazyflie 2.1 Quadrotor",
-    "section": "Path Planning: Astar",
-    "text": "Path Planning: Astar"
+    "section": "Path Planning: A\\(^*\\)",
+    "text": "Path Planning: A\\(^*\\)"
   },
   {
-    "objectID": "index.html#trajectory-generation",
-    "href": "index.html#trajectory-generation",
+    "objectID": "index.html#trajectory-generation-spline-interpolation-and-smoothing",
+    "href": "index.html#trajectory-generation-spline-interpolation-and-smoothing",
     "title": "Trajectory Planning and Control for Crazyflie 2.1 Quadrotor",
-    "section": "Trajectory Generation",
-    "text": "Trajectory Generation\n\n\\[\n\\underbrace{\\sum_{i=1}^n w_i \\left\\| y_i - f(x_i) \\right\\|^2}_{\\text{data fidelity (weighted least squares)}}\n\\;+\\;\n\\underbrace{\\lambda \\int_{x_1}^{x_n} \\left( f^{(2)}(u) \\right)^2 \\, du}_{\\text{smoothness penalty (curvature)}}\n\\]\n\n\n\n\n\n\n\nMetrics and Plots\n\nWe have tested multiple controllers in simulation and gathered performance metrics.\n\n\nDesired vs Actual Trajectory\n\nPosition, velocity, acceleration controller’s desired vs actual trajectory:\n\n\n\nPID controller’s desired vs actual trajectory:\n\n\n\n\nRoot Mean Squared Tracking Error\n\nPosition, velocity, acceleration controller’s RMSE:\n\n\n\nPID controller’s RMSE:\n\n\nADD IN IMAGE LATER"
+    "section": "Trajectory Generation: Spline Interpolation and Smoothing",
+    "text": "Trajectory Generation: Spline Interpolation and Smoothing\n\nWe use scipy.interpolate.make_smoothing_spline to create a smooth interpolated trajectory through the waypoints found from A\\(^*\\). This function uses the following formula, found in [1].\n\\[\n\\underbrace{\\sum_{i=1}^n w_i \\left\\| y_i - f(x_i) \\right\\|^2}_{\\text{data fidelity (weighted least squares)}}\n\\;+\\;\n\\underbrace{\\lambda \\int_{x_1}^{x_n} \\left( f^{(2)}(u) \\right)^2 \\, du}_{\\text{smoothness penalty (curvature)}}\n\\]\nWe weight the two waypoints directly neighboring each gate very heavily. The weighting of the other waypoints goes by section. Each section spans a stretch between two gates, between the start point and the first gate, or the last gate and the end point. For each section of waypoints, we weight the waypoints as a function of how far they are from the section’s endpoints. For example, for the section between gate 1 and gate 2, the farther away in the sequence a waypoint is from either gate 1 or gate 2, the lower its weight."
   },
   {
-    "objectID": "index.html#metrics-and-plots",
-    "href": "index.html#metrics-and-plots",
+    "objectID": "index.html#control-policies-position-velocity-acceleration-and-pid",
+    "href": "index.html#control-policies-position-velocity-acceleration-and-pid",
     "title": "Trajectory Planning and Control for Crazyflie 2.1 Quadrotor",
-    "section": "Metrics and Plots",
-    "text": "Metrics and Plots\n\nWe have tested multiple controllers in simulation and gathered performance metrics.\n\n\nDesired vs Actual Trajectory\n\nPosition, velocity, acceleration controller’s desired vs actual trajectory:\n\n\n\nPID controller’s desired vs actual trajectory:\n\n\n\n\nRoot Mean Squared Tracking Error\n\nPosition, velocity, acceleration controller’s RMSE:\n\n\n\nPID controller’s RMSE:\n\n\nADD IN IMAGE LATER"
+    "section": "Control Policies: Position-Velocity-Acceleration and PID",
+    "text": "Control Policies: Position-Velocity-Acceleration and PID\n\nPosition-Velocity-Acceleration Controller\n\nPosition, velocity, and acceleration\n\n\n\nPID Controller\n\nThe PID controller [2] provides\n\n\n\n\n\n\nPerformance Metrics and Plots\n\nWe have tested multiple controllers in simulation and gathered performance metrics.\n\n\nDesired vs. Actual Trajectory\n\nPosition, Velocity, Acceleration Controller’s Desired vs. Actual Trajectory:\n\n\n\nPID Controller’s Desired vs. Actual Trajectory:\n\n\n\n\nRoot Mean Squared Error Metric for Tracking Error\n\nPosition, Velocity, Acceleration Controller’s RMSE:\n\n\n\nPID Controller’s RMSE:"
   },
   {
-    "objectID": "index.html#crazyflie-hovering-video",
-    "href": "index.html#crazyflie-hovering-video",
+    "objectID": "index.html#performance-metrics-and-plots",
+    "href": "index.html#performance-metrics-and-plots",
     "title": "Trajectory Planning and Control for Crazyflie 2.1 Quadrotor",
-    "section": "Crazyflie Hovering Video",
-    "text": "Crazyflie Hovering Video\n\nWe have done the hardware setup to run our controllers on the Crazyflie drone. Here is a video of the drone hovering."
+    "section": "Performance Metrics and Plots",
+    "text": "Performance Metrics and Plots\n\nWe have tested multiple controllers in simulation and gathered performance metrics.\n\n\nDesired vs. Actual Trajectory\n\nPosition, Velocity, Acceleration Controller’s Desired vs. Actual Trajectory:\n\n\n\nPID Controller’s Desired vs. Actual Trajectory:\n\n\n\n\nRoot Mean Squared Error Metric for Tracking Error\n\nPosition, Velocity, Acceleration Controller’s RMSE:\n\n\n\nPID Controller’s RMSE:"
   },
   {
-    "objectID": "index.html#crazysim-demo-video",
-    "href": "index.html#crazysim-demo-video",
+    "objectID": "index.html#crazyflie-simluation-and-hardware-videos",
+    "href": "index.html#crazyflie-simluation-and-hardware-videos",
     "title": "Trajectory Planning and Control for Crazyflie 2.1 Quadrotor",
-    "section": "CrazySim Demo Video",
-    "text": "CrazySim Demo Video\n\nWe have setup the simulator for Crazyflie with a video below showing a drone flying through square rings."
+    "section": "Crazyflie Simluation and Hardware Videos",
+    "text": "Crazyflie Simluation and Hardware Videos\n\nSimulation of Position-Velocity-Accleration Controller\n\n\n\n\n\nSimulation of PID Controller\n\n\n\n\n\nCrazyflie Hardware Hover Demo\n\nWe have performed the hardware setup to run our controllers on the Crazyflie drone. Below is a video of the drone hovering at a constant 0.4 meters off the ground."
   },
   {
-    "objectID": "index.html#plan-for-work-allocation",
-    "href": "index.html#plan-for-work-allocation",
+    "objectID": "index.html#preliminary-testing-on-varying-course-configurations",
+    "href": "index.html#preliminary-testing-on-varying-course-configurations",
     "title": "Trajectory Planning and Control for Crazyflie 2.1 Quadrotor",
-    "section": "Plan for Work Allocation",
-    "text": "Plan for Work Allocation\n\nOne person will work developing the state estimator, another will work on the position and velocity controller, and another will work on developing and implementing the various trajectory planning algorithms."
+    "section": "Preliminary Testing on Varying Course Configurations",
+    "text": "Preliminary Testing on Varying Course Configurations"
+  },
+  {
+    "objectID": "index.html#takeaways-and-future-work",
+    "href": "index.html#takeaways-and-future-work",
+    "title": "Trajectory Planning and Control for Crazyflie 2.1 Quadrotor",
+    "section": "Takeaways and Future Work",
+    "text": "Takeaways and Future Work"
   },
   {
     "objectID": "index.html#bibtex",

@@ -20,3 +20,6 @@ format:
     css: styles.css
     toc: false
     page-layout: full
+
+bibliography: references.bib
+csl: ieee.csl

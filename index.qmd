@@ -1,5 +1,9 @@
 ---
 pagetitle: "Whales Acquiring Yummy Mouthwatering Oranges"
+
+bibliography: references.bib
+csl: ieee.csl
+
 format:
   html:
     toc: false
@@ -75,12 +79,16 @@ We are building and testing various trajectory planning algorithms for a Crazyfl
 
 
 ## Architecture and Flow {.section-title}
+
 ![](static/images/Architecture_and_Flow.png)
+
 ::: {.content-text}
 Below, we will introduce and discuss the various algorithms that make up this pipeline.
 :::
 
 :::
+
+::: {.section-container}
 
 <!-- ============================================================ -->
 <!-- ASTAR -->
@@ -88,6 +96,9 @@ Below, we will introduce and discuss the various algorithms that make up this pi
 
 ## Path Planning: A$^*$ {.section-title}
 
+:::
+
+::: {.section-container}
 <!-- ============================================================ -->
 <!-- TRAJECTORY GENERATION -->
 <!-- ============================================================ -->
@@ -95,16 +106,26 @@ Below, we will introduce and discuss the various algorithms that make up this pi
 ## Trajectory Generation: Spline Interpolation and Smoothing {.section-title}
 
 ::: {.content-text}
+We use scipy.interpolate.make_smoothing_spline to create a smooth interpolated trajectory through
+the waypoints found from A$^*$. This function uses the following formula, found in [@scipy_smoothing_spline].
+
 $$
 \underbrace{\sum_{i=1}^n w_i \left\| y_i - f(x_i) \right\|^2}_{\text{data fidelity (weighted least squares)}}
 \;+\;
 \underbrace{\lambda \int_{x_1}^{x_n} \left( f^{(2)}(u) \right)^2 \, du}_{\text{smoothness penalty (curvature)}}
 $$
+
+We weight the two waypoints directly neighboring each gate very heavily. The weighting of the other waypoints goes
+by section. Each section spans a stretch between two gates, between the start point and the first gate, or the last gate 
+and the end point. For each section of waypoints, we weight the waypoints as a function of how far they are from the section's 
+endpoints. For example, for the section between gate 1 and gate 2, the farther away in the sequence a waypoint is from either gate 1
+or gate 2, the lower its weight.
 :::
 
 ![](static/images/smooth_spline_interp_of_astar_waypoints_lam_2_gates.png)
 ![](static/images/level2_track.png)
 
+:::
 <!-- ============================================================ -->
 <!-- CONTROL -->
 <!-- ============================================================ -->
