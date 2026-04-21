@@ -101,6 +101,106 @@ Below, we will introduce and discuss the various algorithms that make up this pi
 
 ## Path Planning: A$^*$ {.section-title}
 
+::: {.content-text}
+Given the positions and orientations of the gates and obstacles in the environment, we use A$^*$ search on a discretized 3D occupancy grid to produce a sequence of waypoints that guides the drone safely through every gate.
+:::
+
+### 3D Occupancy Grid
+
+::: {.content-text}
+The environment is discretized into a 3D grid with a resolution of $\Delta = 0.025$ m per cell. Every cell is initialized as free. Obstacle cylinders are inflated by a safety radius $r_{\text{obs}} = 0.3$ m and marked as occupied. Gate frame voxels are also marked as occupied, so the planner must route through the gate's normal axis rather than through its solid structure.
+:::
+
+### Gate Orientation and Normal Vector
+
+::: {.content-text}
+Each gate carries a pose described by a position $\mathbf{p}_g \in \mathbb{R}^3$ and roll-pitch-yaw angles. Only the yaw angle $\psi$ (rotation about the $z$-axis) matters for determining the direction through the gate. From $\psi$ we form the **gate normal vector**
+
+$$
+\hat{\mathbf{n}} = \begin{bmatrix} \cos\psi \\ \sin\psi \\ 0 \end{bmatrix}
+$$
+
+which points along the axis the drone must fly to pass cleanly through the gate opening.
+:::
+
+### Entry and Exit Waypoints
+
+::: {.content-text}
+To encourage the drone to approach each gate head-on, we place a pair of **approach waypoints** at a fixed standoff distance $d = 0.25$ m on either side of the gate center along the normal:
+
+$$
+\mathbf{w}_{\text{entry}} = \mathbf{p}_g - d\,\hat{\mathbf{n}}, \qquad \mathbf{w}_{\text{exit}} = \mathbf{p}_g + d\,\hat{\mathbf{n}}
+$$
+
+$\mathbf{w}_{\text{entry}}$ is the point the drone must reach before the gate, and $\mathbf{w}_{\text{exit}}$ is the point it must clear on the far side. Three additional high-priority waypoints—the entry approach, the gate center $\mathbf{p}_g$, and the exit approach—are always inserted explicitly into the final waypoint list (see the Waypoint Assembly section below), guaranteeing the drone passes through the center of every gate regardless of what the grid planner chooses.
+:::
+
+### Heuristic
+
+::: {.content-text}
+The A$^*$ heuristic is the standard **3D Euclidean distance** between a grid cell $\mathbf{a} = (a_x, a_y, a_z)$ and the segment goal $\mathbf{b} = (b_x, b_y, b_z)$:
+
+$$
+h(\mathbf{a}, \mathbf{b}) = \sqrt{(a_x - b_x)^2 + (a_y - b_y)^2 + (a_z - b_z)^2}
+$$
+
+Because the actual step cost between any two adjacent cells is also their Euclidean distance (see neighbor costs below), $h$ never overestimates the true cost-to-go, making it **admissible** and guaranteeing that A$^*$ finds an optimal path.
+:::
+
+### A$^*$ Search
+
+::: {.content-text}
+The search operates on grid indices rather than metric coordinates. Each cell has up to 26 neighbors (the full 3D Moore neighborhood), reached by steps $(\delta x, \delta y, \delta z) \in \{-1,0,1\}^3 \setminus \{(0,0,0)\}$. The movement cost of each step equals its Euclidean length:
+
+$$
+c(\delta x, \delta y, \delta z) = \sqrt{\delta x^2 + \delta y^2 + \delta z^2}
+$$
+
+so axis-aligned moves cost 1, face-diagonal moves cost $\sqrt{2}$, and body-diagonal moves cost $\sqrt{3}$.
+
+The algorithm maintains a min-heap `open_set` of $(f, \mathbf{s})$ pairs ordered by the $f$-score
+
+$$
+f(\mathbf{s}) = g(\mathbf{s}) + h(\mathbf{s}, \mathbf{goal})
+$$
+
+where $g(\mathbf{s})$ is the best known cost from the start to cell $\mathbf{s}$. At each iteration the cell with the lowest $f$-score is expanded. For each free neighbor $\mathbf{n}$, a tentative cost $g' = g(\mathbf{s}) + c(\Delta)$ is computed; if $g' < g(\mathbf{n})$, the neighbor's cost and parent are updated and it is pushed onto the heap. The search terminates as soon as the goal cell is popped, at which point the path is reconstructed by following parent pointers back to the start.
+:::
+
+### Waypoint Assembly and Weights
+
+::: {.content-text}
+Rather than planning one long path from start to finish, we decompose the route into **per-segment problems**. For $K$ gates with entry–exit pairs $(\mathbf{w}_{\text{entry}}^k, \mathbf{w}_{\text{exit}}^k)$, the segments are
+
+$$
+(\mathbf{p}_{\text{start}},\; \mathbf{w}_{\text{entry}}^1),\quad (\mathbf{w}_{\text{exit}}^1,\; \mathbf{w}_{\text{entry}}^2),\quad \ldots,\quad (\mathbf{w}_{\text{exit}}^K,\; \mathbf{p}_{\text{end}})
+$$
+
+A$^*$ is run independently on each segment. The grid-index path returned by each run is converted back to metric coordinates via
+
+$$
+\mathbf{p}_{\text{world}} = \mathbf{p}_{\text{min}} + \mathbf{s} \cdot \Delta
+$$
+
+where $\mathbf{p}_{\text{min}} = [-2.5, -1.5, 0]^\top$ is the grid origin and $\mathbf{s}$ is the grid index triplet.
+
+Each waypoint is assigned a scalar **weight** that will later influence the smoothing spline. Interior A$^*$ waypoints—those far from either endpoint of a segment—receive lower weights according to
+
+$$
+w_j = \frac{3}{1 + \min(j,\; n-1-j)}
+$$
+
+where $j$ is the waypoint's index in the path and $n$ is the total number of points in the segment. This down-weights mid-path points so the spline is free to shortcut through open space, while points near the segment endpoints are trusted more heavily. After each A$^*$ segment, three gate-critical waypoints are appended with fixed high weights:
+
+| Waypoint | Weight |
+|---|---|
+| Gate entry approach $\mathbf{w}_{\text{entry}}^k$ | 15 |
+| Gate center $\mathbf{p}_g^k$ | 5 |
+| Gate exit approach $\mathbf{w}_{\text{exit}}^k$ | 15 |
+
+The final output is a pair of arrays: an $(N \times 3)$ array of waypoint coordinates and an $(N,)$ array of weights. These are handed directly to the spline-smoothing stage described in the next section.
+:::
+
 :::
 
 ::: {.section-container}
