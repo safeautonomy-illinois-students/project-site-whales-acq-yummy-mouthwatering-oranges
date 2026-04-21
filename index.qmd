@@ -68,7 +68,12 @@ Seeking safe, efficient, and fast drone navigation through an obstacle course.
 
 
 ::: {.abstract-text}
-We are building and testing various trajectory planning algorithms for a Crazyflie quadrotor that attempt to map the fastest path through an obstacle course. Through a state estimation framework utilizing measurements collected by sensors, the pose of the Crazyflie can be estimated. This trajectory and the estimated pose can be fed into a position and velocity controller that minimizes the amount of time it takes the quadrotor to complete the obstacle course. We are considering implementing different trajectory planning algorithms: linear fitting, polynomial fitting, and/or gradient descent with waypoints. We will consider implementing the speed controller using the Euclidean distance to the next obstacle and/or the curve of the trajectory, as well as incorporating sensor data. These algorithms will be developed and tested in simulation before being deployed to the hardware.
+We are building and testing various trajectory planning algorithms for a Crazyflie quadrotor that attempt to map the fastest path through an obstacle course. 
+Through a state estimation framework utilizing measurements collected by sensors, the pose of the Crazyflie can be estimated. 
+This trajectory and the estimated pose can be fed into a position and velocity controller that minimizes the amount of time it takes the quadrotor to complete the obstacle course. 
+We are considering implementing different trajectory planning algorithms: linear fitting, polynomial fitting, and/or gradient descent with waypoints. 
+We will consider implementing the speed controller using the Euclidean distance to the next obstacle and/or the curve of the trajectory, as well as incorporating sensor data. 
+These algorithms will be developed and tested in simulation before being deployed to the hardware.
 :::
 
 
@@ -149,9 +154,10 @@ $$u_y = -K_{Py}*e - K_{Dy}*\frac{de}{dt} + K_{Iy}*\int_0^t e dt$$
 $$u_z = K_{Pz}*e + K_{Dz}*\frac{de}{dt} + K_{Iz}*\int_0^t e dt$$
 with the corresponding PID gains for each direction.
 The gains are as follows:
-| K_{Px} = 18 | K_{Dx} = 7 | K_{Ix} = 0.2 |
-| K_{Py} = 18 | K_{Dy} = 7 | K_{Iy} = 0.2 |
-| K_{Pz} = 10 | K_{Dz} = 1.5 | K_{Iz} = 1 |
+|-------------|--------------|--------------|
+| K_{Px} = 18 | K_{Dx} = 7   | K_{Ix} = 0.2 |
+| K_{Py} = 18 | K_{Dy} = 7   | K_{Iy} = 0.2 |
+| K_{Pz} = 10 | K_{Dz} = 1.5 | K_{Iz} = 1   |
 The desired roll and pitch angles and thrust are computed as:
 $$\phi_d = \tan^{-1}(\frac{u_y\cos(\theta)}{g - u_z})$$
 $$\theta_d = \tan^{-1}(\frac{u_x}{u_z - g})$$
