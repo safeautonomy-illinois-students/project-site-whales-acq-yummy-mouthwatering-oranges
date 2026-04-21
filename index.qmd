@@ -164,13 +164,13 @@ $$
 f(\mathbf{s}) = g(\mathbf{s}) + h(\mathbf{s}, \mathbf{goal})
 $$
 
-where $g(\mathbf{s})$ is the best known cost from the start to cell $\mathbf{s}$. At each iteration the cell with the lowest $f$-score is expanded. For each free neighbor $\mathbf{n}$, a tentative cost $g' = g(\mathbf{s}) + c(\Delta)$ is computed; if $g' < g(\mathbf{n})$, the neighbor's cost and parent are updated and it is pushed onto the heap. The search terminates as soon as the goal cell is popped, at which point the path is reconstructed by following parent pointers back to the start.
+where $g(\mathbf{s})$ is the best known cost from the start to cell $\mathbf{s}$. At each iteration the cell with the lowest $f$-score is expanded. For each free neighbor $\mathbf{n}$, a tentative cost $g' = g(\mathbf{s}) + c(\Delta)$ is computed. If $g' < g(\mathbf{n})$, the neighbor's cost and parent are updated and it is pushed onto the heap. The search terminates as soon as the goal cell is popped, at which point the path is reconstructed by following parent pointers back to the start.
 :::
 
 ### Waypoint Assembly and Weights
 
 ::: {.content-text}
-Rather than planning one long path from start to finish, we decompose the route into **per-segment problems**. For $K$ gates with entry–exit pairs $(\mathbf{w}_{\text{entry}}^k, \mathbf{w}_{\text{exit}}^k)$, the segments are
+Rather than planning one long path from start to finish, we decompose the route into **per-segment problems**. For $K$ gates with entry and exit pairs $(\mathbf{w}_{\text{entry}}^k, \mathbf{w}_{\text{exit}}^k)$, the segments are
 
 $$
 (\mathbf{p}_{\text{start}},\; \mathbf{w}_{\text{entry}}^1),\quad (\mathbf{w}_{\text{exit}}^1,\; \mathbf{w}_{\text{entry}}^2),\quad \ldots,\quad (\mathbf{w}_{\text{exit}}^K,\; \mathbf{p}_{\text{end}})
@@ -184,7 +184,7 @@ $$
 
 where $\mathbf{p}_{\text{min}} = [-2.5, -1.5, 0]^\top$ is the grid origin and $\mathbf{s}$ is the grid index triplet.
 
-Each waypoint is assigned a scalar **weight** that will later influence the smoothing spline. Interior A$^*$ waypoints—those far from either endpoint of a segment—receive lower weights according to
+Each waypoint is assigned a scalar **weight** that will later influence the smoothing spline. Interior A$^*$ waypoints (those far from either endpoint of a segment) receive lower weights according to
 
 $$
 w_j = \frac{3}{1 + \min(j,\; n-1-j)}
@@ -204,7 +204,7 @@ The final output is a pair of arrays: an $(N \times 3)$ array of waypoint coordi
 ### Iterations and Key Design Decisions
 
 ::: {.content-text}
-Our initial A$^*$ implementation had no explicit gate pass-through waypoints, which caused the drone's trajectory to clip the edge of gates rather than pass cleanly through the center. We fixed this by computing the entry and exit waypoints from the gate's normal vector and inserting them—along with the gate center—directly into the waypoint list. However, we then observed the drone treating some gates as free space—flying through their openings even when they weren't the target gate. Once the forced pass-through waypoints were in place, we simplified the grid by treating every gate as a fully solid obstacle, which eliminated that shortcutting behavior. We also discovered that the base of each gate post extends into the ground, so we adjusted the blocked cells to account for that region as well.
+Our initial A$^*$ implementation had no explicit gate pass-through waypoints, which caused the drone's trajectory to clip the edge of gates rather than pass cleanly through the center. We fixed this by computing the entry and exit waypoints from the gate's normal vector and inserting them, along with the gate center, directly into the waypoint list. However, we then observed the drone treating some gates as free space, flying through their openings even when they were not the target gate. Once the forced pass-through waypoints were in place, we simplified the grid by treating every gate as a fully solid obstacle, which eliminated that shortcutting behavior. We also discovered that the base of each gate post extends into the ground, so we adjusted the blocked cells to account for that region as well.
 :::
 
 :::
